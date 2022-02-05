@@ -89,6 +89,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // testing loggers for the color sensor. This can be used later to determine the color of the ball
+    // todo when we get this working for detecting the ball, determine a way to tell whether we should
+    // be detecting blue balls as ours or red balls as ours
     System.out.println("Blue " + Robot.colorSensor.blue());
     System.out.println("Red " + Robot.colorSensor.red());
     System.out.println("Green " + Robot.colorSensor.green());
