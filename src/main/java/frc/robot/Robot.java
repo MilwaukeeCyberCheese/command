@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.other.ColorSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,6 +20,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  // color sensor for determining the color of the ball
+  public static ColorSensor colorSensor;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -28,6 +32,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    colorSensor = new ColorSensor();
   }
 
   /**
@@ -81,7 +87,13 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // testing loggers for the color sensor. This can be used later to determine the color of the ball
+    System.out.println("Blue " + Robot.colorSensor.blue());
+    System.out.println("Red " + Robot.colorSensor.red());
+    System.out.println("Green " + Robot.colorSensor.green());
+    System.out.println("Proximity " + Robot.colorSensor.proximity());
+  }
 
   @Override
   public void testInit() {
