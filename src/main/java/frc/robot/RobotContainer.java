@@ -9,9 +9,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,7 +26,6 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_drivetrainSubsystem = new DriveSubsystem();
-
   private final DriveCommand m_driveCommand = new DriveCommand(
     m_drivetrainSubsystem,
     () -> -modifyAxis(filteredController.getYLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND
@@ -35,6 +38,13 @@ public class RobotContainer {
   private final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
   private final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
 
+  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
+
+  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
+
+  // input controllers
   private final static XboxController m_controller = new XboxController(0);
   public static final FilteredController filteredController = new FilteredController(m_controller);
 
@@ -50,7 +60,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
 
@@ -60,17 +69,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   // return m_driveCommand;
-  // }
+  }
 
   private static double modifyAxis(double value) {
     // Deadband
