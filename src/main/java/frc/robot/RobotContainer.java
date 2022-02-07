@@ -6,10 +6,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.other.FilteredController;
+import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,6 +32,9 @@ public class RobotContainer {
     () -> -modifyAxis(filteredController.getXRight(.2)) * DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
       * Constants.outputs.turnRate);
 
+  private final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
+  private final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
+
   private final static XboxController m_controller = new XboxController(0);
   public static final FilteredController filteredController = new FilteredController(m_controller);
 
@@ -37,6 +42,16 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+  }
+
+  /**
+   * Use this to pass the autonomous command to the main {@link Robot} class.
+   *
+   * @return the command to run in autonomous
+   */
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+    return m_autoCommand;
   }
 
   /**
