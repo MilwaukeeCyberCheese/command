@@ -32,14 +32,13 @@ public final class Constants {
         public static final double WHEELBASE = Units.inchesToMeters(20.25);
     }
 
-    public final class subsystems {
-        public final class drive {
-            //todo find out how to calculate these constants
-            public static final double MAX_VEL_METERS = 0;
-            public static final double MAX_ANG_VEL_RAD = 0;
-            public static final double MAX_VOLTAGE = 12.0;
-            public static final double MAX_ANG_ACCEL = 8 * Math.PI;
-            
+    public static final class subsystems {
+        public static final class drive {
+            // <Motor free speed RPM> / 60 * <Drive reduction> * <Wheel diameter meters> * pi
+            public static final double MAX_VEL_METERS = (5310 / 60) * (1/10.71) * 0.1524 * Math.PI;
+            public static final double MAX_ANG_VEL_RAD = Math.toRadians(180);
+            public static final double MAX_ANG_ACCEL = Math.toRadians(180);
+            public static final double MAX_VOLTAGE = 12.0;   
         }
     }
 
