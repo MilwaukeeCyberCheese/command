@@ -6,9 +6,12 @@ import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveSubsystem extends SubsystemBase {
 
+    //todo figure our these variables
     public static final int MAX_VELOCITY_METERS_PER_SECOND = 0;
 
     public static final int MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 0;
@@ -25,6 +28,10 @@ public class DriveSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
+    private final CANSparkMax leftFrontSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_LEFT_FRONT_SPARK, MotorType.kBrushed);
+    private final CANSparkMax leftRearSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
+    private final CANSparkMax rightFrontSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
+    private final CANSparkMax rightRearSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_RIGHT_REAR_SPARK, MotorType.kBrushed);
 
     public DriveSubsystem() {}
 
@@ -34,12 +41,16 @@ public class DriveSubsystem extends SubsystemBase {
         MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);
       
         // Get the individual wheel speeds
-        double frontLeft = wheelSpeeds.frontLeftMetersPerSecond;
-        double frontRight = wheelSpeeds.frontRightMetersPerSecond;
-        double backLeft = wheelSpeeds.rearLeftMetersPerSecond;
-        double backRight = wheelSpeeds.rearRightMetersPerSecond;
+        double leftFrontSpeed = wheelSpeeds.frontLeftMetersPerSecond;
+        double rightFrontSpeed = wheelSpeeds.frontRightMetersPerSecond;
+        double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
+        double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
         
         //todo set motors to speed
+        leftFrontSpark.set(leftFrontSpeed);
+        leftRearSpark.set(leftRearSpeed);
+        rightFrontSpark.set(rightFrontSpeed);
+        rightRearSpark.set(rightRearSpeed);
     }
   
     @Override
