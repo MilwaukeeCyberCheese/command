@@ -18,12 +18,14 @@ public class ShooterCommand extends CommandBase {
         if (Robot.getColorSensor().hasBall()) {
             if (Robot.getColorSensor().isRedBall() && DriverStation.getAlliance() != DriverStation.Alliance.Red
                 || Robot.getColorSensor().isBlueBall() && DriverStation.getAlliance() != DriverStation.Alliance.Blue) {
-                //todo drive motor slowly
+                m_shooterSubsystem.drive(0.1, 0.1);
+                //todo activate servo?
                 return;
             }
         }
 
-        //todo drive motor
+        m_shooterSubsystem.drive(0.5, 0.5);
+        //todo activate servo?
     }
 
      /**
@@ -31,6 +33,6 @@ public class ShooterCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-
+        m_shooterSubsystem.drive(0.0, 0.0);
     }
 }
