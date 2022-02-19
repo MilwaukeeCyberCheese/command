@@ -12,7 +12,7 @@ public class IntakeCommand extends CommandBase {
     
     @Override
     public void execute() {
-        
+        m_intakeSubsystem.drive(0.5);
     }
 
      /**
@@ -20,6 +20,6 @@ public class IntakeCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-
+        m_intakeSubsystem.drive(0.0);
     }
 }

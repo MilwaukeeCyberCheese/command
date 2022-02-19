@@ -58,4 +58,29 @@ public class ColorSensor {
     public boolean ping() {
         return sensor.addressOnly();
     }
+
+    /**
+     * This function returns whether the color is a red in the system
+     * @return True if red, false if blue
+     */
+    public boolean isRedBall() {
+        return red() > blue();
+    }
+
+    /**
+     * This function returns whether the color is a blue ball in the system
+     * @return True if blue, false if red
+     */
+    public boolean isBlueBall() {
+        return blue() > red();
+    }
+
+    /**
+     * This function determines if the ball is in the system using proximity
+     * @return True if within proximity, false otherwise
+     */
+    public boolean hasBall() {
+        //todo this proximity really needs playing with to get this working
+        return proximity() < 100;
+    }
 }

@@ -20,7 +20,7 @@ public class DriveCommand extends CommandBase {
 
 
     public DriveCommand(DriveSubsystem drivetrainSubsystem, DoubleSupplier translationXSupplier,
-    DoubleSupplier translationYSupplier, DoubleSupplier rotationSupplier) {
+        DoubleSupplier translationYSupplier, DoubleSupplier rotationSupplier) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.m_translationXSupplier = translationXSupplier;
         this.m_translationYSupplier = translationYSupplier;

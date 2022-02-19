@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
@@ -24,7 +25,11 @@ import frc.robot.subsystems.ShooterSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // input controllers
+  private final static XboxController m_controller = new XboxController(0);
+  public static final FilteredController filteredController = new FilteredController(m_controller);
+
+  // the robot's subsystems and commands are defined here...
   private final DriveSubsystem m_drivetrainSubsystem = new DriveSubsystem();
   private final DriveCommand m_driveCommand = new DriveCommand(
     m_drivetrainSubsystem,
@@ -44,10 +49,6 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
 
-  // input controllers
-  private final static XboxController m_controller = new XboxController(0);
-  public static final FilteredController filteredController = new FilteredController(m_controller);
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -64,13 +65,15 @@ public class RobotContainer {
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be created by
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
+   * it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    new Button(() -> filteredController.getLeftTriggerActive()).whileHeld(m_intakeCommand);   
   }
 
   private static double modifyAxis(double value) {

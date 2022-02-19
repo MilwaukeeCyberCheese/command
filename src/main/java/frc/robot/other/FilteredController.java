@@ -76,6 +76,23 @@ public class FilteredController {
         return new InputFilter(controller.getRightTriggerAxis()).getFiltered(deadzone);
     }
 
+    public boolean getRightTriggerActive() {
+        if (controller.getRightTriggerAxis() > .2) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    public boolean getLeftTriggerActive() {
+        if (controller.getLeftTriggerAxis() > .2) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     
     /** 
      * @return boolean
