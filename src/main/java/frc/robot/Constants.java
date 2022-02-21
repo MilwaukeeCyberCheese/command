@@ -17,14 +17,14 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
     public static final class controllers {
-        public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 0; // front = closest to intake
-        public static final int DRIVETRAIN_LEFT_REAR_SPARK = 0;
-        public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 0;
-        public static final int DRIVETRAIN_RIGHT_REAR_SPARK = 0;
+        public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 7; // front = closest to intake, left = facing intake
+        public static final int DRIVETRAIN_LEFT_REAR_SPARK = 4;
+        public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 6;
+        public static final int DRIVETRAIN_RIGHT_REAR_SPARK = 5;
         public static final int INTAKE_SPARK = 0;
-        public static final int SHOOTER_TOP_SPARK = 0;
-        public static final int SHOOTER_BOTTOM_SPARK = 0;
-        public static final int CLIMBER_SPARK = 0; // this is likely unused 
+        public static final int SHOOTER_TOP_SPARK = 1;
+        public static final int SHOOTER_BOTTOM_SPARK = 3;
+        public static final int CLIMBER_SPARK = 2; // this is likely unused 
     }
 
     public static final class dimensions {

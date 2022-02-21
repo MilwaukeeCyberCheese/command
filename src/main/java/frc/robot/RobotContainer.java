@@ -76,6 +76,11 @@ public class RobotContainer {
     new Button(() -> filteredController.getLeftTriggerActive()).whileHeld(m_intakeCommand);   
   }
 
+  /**
+   * Modifies the controller joysticks
+   * @param value
+   * @return
+   */
   private static double modifyAxis(double value) {
     // Deadband
     value = deadband(value, 0.05);
@@ -86,6 +91,12 @@ public class RobotContainer {
     return value;
   }
 
+  /**
+   * Deadband for the controller joysticks
+   * @param value
+   * @param deadband
+   * @return
+   */
   private static double deadband(double value, double deadband) {
     if (Math.abs(value) > deadband) {
       if (value > 0.0) {
