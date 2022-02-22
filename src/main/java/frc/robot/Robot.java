@@ -4,6 +4,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -34,6 +40,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     colorSensor = new ColorSensor();
+
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**
@@ -91,10 +99,10 @@ public class Robot extends TimedRobot {
     // testing loggers for the color sensor. This can be used later to determine the color of the ball
     // todo when we get this working for detecting the ball, determine a way to tell whether we should
     // be detecting blue balls as ours or red balls as ours
-    System.out.println("Blue " + Robot.colorSensor.blue());
-    System.out.println("Red " + Robot.colorSensor.red());
-    System.out.println("Green " + Robot.colorSensor.green());
-    System.out.println("Proximity " + Robot.colorSensor.proximity());
+    // System.out.println("Blue " + Robot.colorSensor.blue());
+    // System.out.println("Red " + Robot.colorSensor.red());
+    // System.out.println("Green " + Robot.colorSensor.green());
+    // System.out.println("Proximity " + Robot.colorSensor.proximity());
   }
 
   @Override

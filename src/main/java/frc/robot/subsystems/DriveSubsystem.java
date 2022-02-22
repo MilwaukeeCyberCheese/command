@@ -6,6 +6,8 @@ import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -69,16 +71,10 @@ public class DriveSubsystem extends SubsystemBase {
         double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
         double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
         
-        //todo set motors to speed
-        leftFrontSpark.set(leftFrontSpeed);
-        leftRearSpark.set(leftRearSpeed);
+        leftFrontSpark.set(-leftFrontSpeed);
+        leftRearSpark.set(-leftRearSpeed);
         rightFrontSpark.set(rightFrontSpeed);
         rightRearSpark.set(rightRearSpeed);
-    }
-  
-    @Override
-    public void simulationPeriodic() {
-      // This method will be called once per scheduler run during simulation
     }
 
     public void drive(ChassisSpeeds chassisSpeeds) {

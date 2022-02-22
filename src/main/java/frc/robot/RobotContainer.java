@@ -5,17 +5,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -26,31 +29,36 @@ import frc.robot.subsystems.ShooterSubsystem;
  */
 public class RobotContainer {
   // input controllers
-  private final static XboxController m_controller = new XboxController(0);
+  private static final XboxController m_controller = new XboxController(0);
   public static final FilteredController filteredController = new FilteredController(m_controller);
 
   // the robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_drivetrainSubsystem = new DriveSubsystem();
-  private final DriveCommand m_driveCommand = new DriveCommand(
-    m_drivetrainSubsystem,
-    () -> -modifyAxis(filteredController.getYLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND
-      * Constants.outputs.strafe,
-    () -> -modifyAxis(filteredController.getXLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND
-      * Constants.outputs.strafe,
-    () -> -modifyAxis(filteredController.getXRight(.2)) * DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-      * Constants.outputs.turnRate);
+  public static final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
+  public static final DriveCommand m_driveCommand = new DriveCommand(
+      m_driveSubsystem,
+      () -> (modifyAxis(filteredController.getYLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND)
+          * Constants.outputs.strafe,
+      () -> (-modifyAxis(filteredController.getXLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND)
+          * Constants.outputs.strafe,
+      () -> (modifyAxis(filteredController.getXRight(.2)) * -DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND)
+          * Constants.outputs.turnRate);
 
-  private final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
-  private final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
+  private static final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
+  private static final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
 
-  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
+  private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private static final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
 
-  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
+  private static final OuttakeSubsystem m_outtakeSubsystem = new OuttakeSubsystem();
+  private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_outtakeSubsystem);
+
+  private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private static final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_driveSubsystem.setDefaultCommand(m_driveCommand);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -73,7 +81,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new Button(() -> filteredController.getLeftTriggerActive()).whileHeld(m_intakeCommand);   
+    new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
+    new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
   }
 
   /**

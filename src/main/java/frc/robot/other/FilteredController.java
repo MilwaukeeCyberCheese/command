@@ -4,6 +4,8 @@
 
 package frc.robot.other;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.XboxController;
 
 /** Add your docs here. */
@@ -55,25 +57,21 @@ public class FilteredController {
         return new InputFilter(controller.getRightY()).getFiltered(deadzone);
     }
 
+    public boolean getRightTriggerActive(double deadzone) {
+        if (controller.getRightTriggerAxis() > deadzone) {
+            return true;
+        } else {
+            return false;
+        }
 
-    /**
-     * Gets the filtered trigger input for the given trigger.
-     * 
-     * @param deadzone
-     * @return double
-     */
-    public double getTriggerLeft(double deadzone) {
-        return new InputFilter(controller.getLeftTriggerAxis()).getFiltered(deadzone);
     }
-    
-    /**
-     * Gets the filtered trigger input for the given trigger.
-     * 
-     * @param deadzone
-     * @return double
-     */
-    public double getTriggerRight(double deadzone) {
-        return new InputFilter(controller.getRightTriggerAxis()).getFiltered(deadzone);
+    public boolean getLeftTriggerActive(double deadzone) {
+        if (controller.getLeftTriggerAxis() > deadzone) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public boolean getRightTriggerActive() {
@@ -84,6 +82,7 @@ public class FilteredController {
         }
 
     }
+
     public boolean getLeftTriggerActive() {
         if (controller.getLeftTriggerAxis() > .2) {
             return true;
@@ -151,5 +150,13 @@ public class FilteredController {
         } else {
             return 0;
         }
+    }
+
+    public boolean getLeftBumper() {
+        return controller.getLeftBumper();
+    }
+
+    public boolean getRightBumper() {
+        return controller.getRightBumper();
     }
 }

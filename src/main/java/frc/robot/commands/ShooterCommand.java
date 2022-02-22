@@ -8,8 +8,10 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class ShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
 
-    public ShooterCommand(ShooterSubsystem shooterSubsystem) {
-        this.m_shooterSubsystem = shooterSubsystem;
+    public ShooterCommand(ShooterSubsystem m_shooterSubsystem) {
+        this.m_shooterSubsystem = m_shooterSubsystem;
+
+        addRequirements(m_shooterSubsystem);
     }
     
     @Override

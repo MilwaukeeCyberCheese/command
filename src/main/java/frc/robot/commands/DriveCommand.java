@@ -4,10 +4,11 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends CommandBase {
-    private final DriveSubsystem m_drivetrainSubsystem;
+    private final DriveSubsystem m_driveSubsystem;
 
     private final DoubleSupplier m_translationXSupplier;
     private double inputX;
@@ -19,12 +20,14 @@ public class DriveCommand extends CommandBase {
     private double inputRot;
 
 
-    public DriveCommand(DriveSubsystem drivetrainSubsystem, DoubleSupplier translationXSupplier,
+    public DriveCommand(DriveSubsystem m_driveSubsystem, DoubleSupplier translationXSupplier,
         DoubleSupplier translationYSupplier, DoubleSupplier rotationSupplier) {
-        this.m_drivetrainSubsystem = drivetrainSubsystem;
+        this.m_driveSubsystem = m_driveSubsystem;
         this.m_translationXSupplier = translationXSupplier;
         this.m_translationYSupplier = translationYSupplier;
         this.m_rotationSupplier = rotationSupplier;
+
+        addRequirements(m_driveSubsystem);
     }
 
     @Override
@@ -32,9 +35,8 @@ public class DriveCommand extends CommandBase {
         inputX = m_translationXSupplier.getAsDouble();
         inputY = m_translationYSupplier.getAsDouble();
         inputRot = m_rotationSupplier.getAsDouble();
-
         
-        m_drivetrainSubsystem.drive(new ChassisSpeeds(inputX, inputY, inputRot));
+        m_driveSubsystem.drive(new ChassisSpeeds(inputX, inputY, inputRot));
     }
 
      /**
@@ -42,6 +44,6 @@ public class DriveCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+        m_driveSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
     }
 }
