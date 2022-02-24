@@ -53,7 +53,7 @@ public final class Constants {
     }
 
     public static final class outputs {
-        public static final double strafe = .5;
-        public static final double turnRate = .2;
+        public static final double strafe = .1;
+        public static final double turnRate = .1;
     }
 }
