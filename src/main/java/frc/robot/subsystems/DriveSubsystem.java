@@ -7,9 +7,7 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.other.Stopwatch;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -43,7 +41,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
-    private final MecanumDriveKinematics m_kinematics = new MecanumDriveKinematics(
+    private static final MecanumDriveKinematics m_kinematics = new MecanumDriveKinematics(
                         // Front left
                         new Translation2d(Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0),
                         // Front right
@@ -53,28 +51,31 @@ public class DriveSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
-    private final CANSparkMax leftFrontSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_LEFT_FRONT_SPARK, MotorType.kBrushed);
-    private final CANSparkMax leftRearSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
-    private final CANSparkMax rightFrontSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
-    private final CANSparkMax rightRearSpark = new CANSparkMax(Constants.controllers.DRIVETRAIN_RIGHT_REAR_SPARK, MotorType.kBrushed);
+    private final Stopwatch stopwatch;
 
-    public DriveSubsystem() {}
+    public DriveSubsystem() {
+        stopwatch = new Stopwatch();
+    }
 
     @Override
     public void periodic() {
-        // Get my wheel speeds
+        // this is only used for when planning auto paths
+        if (stopwatch.isRunning())
+            RobotContainer.m_autoSubsystem.addSpeed(m_chassisSpeeds);
+
+        // get my wheel speeds
         MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);
       
-        // Get the individual wheel speeds
+        // get the individual wheel speeds
         double leftFrontSpeed = wheelSpeeds.frontLeftMetersPerSecond;
         double rightFrontSpeed = wheelSpeeds.frontRightMetersPerSecond;
         double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
         double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
         
-        leftFrontSpark.set(-leftFrontSpeed);
-        leftRearSpark.set(-leftRearSpeed);
-        rightFrontSpark.set(rightFrontSpeed);
-        rightRearSpark.set(rightRearSpeed);
+        Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
+        Constants.controllers.leftRearSpark.set(-leftRearSpeed);
+        Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
+        Constants.controllers.rightRearSpark.set(rightRearSpeed);
     }
 
     public void drive(ChassisSpeeds chassisSpeeds) {
@@ -83,5 +84,19 @@ public class DriveSubsystem extends SubsystemBase {
 
     public ChassisSpeeds getChassisSpeeds() {
         return m_chassisSpeeds;
+    }
+
+    public void startStopwatch() {
+        stopwatch.start();
+        System.out.println("Stopwatch Started - Begin Tracking Autonomous");
+    }
+
+    public void stopStopwatch() {
+        stopwatch.stop();
+        RobotContainer.m_autoSubsystem.printSpeeds();
+    }
+
+    public Stopwatch getStopwatch() {
+        return stopwatch;
     }
 }

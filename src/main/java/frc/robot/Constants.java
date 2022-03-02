@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.math.util.Units;
 
 /**
@@ -25,6 +28,11 @@ public final class Constants {
         public static final int SHOOTER_TOP_SPARK = 6;
         public static final int SHOOTER_BOTTOM_SPARK = 8;
         public static final int CLIMBER_SPARK = 1; // this is likely unused 
+
+        public static final CANSparkMax leftFrontSpark = new CANSparkMax(DRIVETRAIN_LEFT_FRONT_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax leftRearSpark = new CANSparkMax(DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax rightFrontSpark = new CANSparkMax(DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax rightRearSpark = new CANSparkMax(DRIVETRAIN_RIGHT_REAR_SPARK, MotorType.kBrushed);
     }
 
     public static final class dimensions {
@@ -53,7 +61,7 @@ public final class Constants {
     }
 
     public static final class outputs {
-        public static final double strafe = .1;
-        public static final double turnRate = .1;
+        public static final double strafe = 0.1;
+        public static final double turnRate = 0.1;
     }
 }

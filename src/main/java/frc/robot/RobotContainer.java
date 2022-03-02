@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -43,7 +42,7 @@ public class RobotContainer {
       () -> (modifyAxis(filteredController.getXRight(.2)) * -DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND)
           * Constants.outputs.turnRate);
 
-  private static final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
+  public static final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
   private static final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
 
   private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
@@ -83,6 +82,16 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
     new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
+    new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
+      @Override
+      public void run() {
+        if (!m_driveSubsystem.getStopwatch().isRunning()) {
+          m_driveSubsystem.startStopwatch();
+        } else {
+          m_driveSubsystem.stopStopwatch();
+        }
+      }
+    });
   }
 
   /**
