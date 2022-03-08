@@ -82,6 +82,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
     new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
+    new Button(filteredController::getRightTriggerActive).whileHeld(m_shooterCommand);
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
       public void run() {

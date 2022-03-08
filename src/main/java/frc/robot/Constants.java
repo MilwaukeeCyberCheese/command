@@ -29,6 +29,7 @@ public final class Constants {
         public static final int SHOOTER_BOTTOM_SPARK = 8;
         public static final int CLIMBER_SPARK = 1; // this is likely unused 
 
+
         public static final CANSparkMax leftFrontSpark = new CANSparkMax(DRIVETRAIN_LEFT_FRONT_SPARK, MotorType.kBrushed);
         public static final CANSparkMax leftRearSpark = new CANSparkMax(DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
         public static final CANSparkMax rightFrontSpark = new CANSparkMax(DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
