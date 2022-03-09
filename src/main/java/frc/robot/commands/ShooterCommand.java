@@ -16,17 +16,18 @@ public class ShooterCommand extends CommandBase {
     
     @Override
     public void execute() {
+        //todo uncomment when color sensor in use
         // this will spit the ball out nicely if the ball color does not match alliance color
-        if (Robot.getColorSensor().hasBall()) {
-            if (Robot.getColorSensor().isRedBall() && DriverStation.getAlliance() != DriverStation.Alliance.Red
-                || Robot.getColorSensor().isBlueBall() && DriverStation.getAlliance() != DriverStation.Alliance.Blue) {
-                m_shooterSubsystem.drive(0.1, 0.1);
-                //todo activate servo?
-                return;
-            }
-        }
+        // if (Robot.getColorSensor().hasBall()) {
+        //     if (Robot.getColorSensor().isRedBall() && DriverStation.getAlliance() != DriverStation.Alliance.Red
+        //         || Robot.getColorSensor().isBlueBall() && DriverStation.getAlliance() != DriverStation.Alliance.Blue) {
+        //         m_shooterSubsystem.drive(0.1, 0.1);
+        //         //todo activate servo?
+        //         return;
+        //     }
+        // }
 
-        m_shooterSubsystem.drive(0.5, 0.5);
+        m_shooterSubsystem.drive(1.0, -1.0);
         //todo activate servo?
     }
 

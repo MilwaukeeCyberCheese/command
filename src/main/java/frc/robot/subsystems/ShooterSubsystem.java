@@ -8,8 +8,8 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private final CANSparkMax shooterTopSpark = new CANSparkMax(Constants.controllers.SHOOTER_TOP_SPARK, MotorType.kBrushless);
-  private final CANSparkMax shooterBottomSpark = new CANSparkMax(Constants.controllers.SHOOTER_BOTTOM_SPARK, MotorType.kBrushless);
+  private final CANSparkMax shooterTopSpark = new CANSparkMax(Constants.controllers.SHOOTER_TOP_SPARK, MotorType.kBrushed);
+  private final CANSparkMax shooterBottomSpark = new CANSparkMax(Constants.controllers.SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
   
   double topSpeed = 0.0;
   double bottomSpeed = 0.0;
@@ -23,7 +23,6 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void drive(double topSpeed, double bottomSpeed) {
-      shooterBottomSpark.setInverted(true);
       this.topSpeed = topSpeed;
       this.bottomSpeed = bottomSpeed;
     }
