@@ -30,9 +30,7 @@ public class ShooterCommand extends CommandBase {
         // }
     }
 
-     /**
-     * @param interrupted
-     */
+     
     @Override
     public void end(boolean interrupted) {
         m_shooterSubsystem.drive(0.0, 0.0);

@@ -14,7 +14,7 @@ public void periodic(){
     }
 }
 
-    public void load(){
-        Constants.controllers.loadServo.set(.5);
+    public void load(double pos){
+        Constants.controllers.loadServo.set(pos);
     }
 }

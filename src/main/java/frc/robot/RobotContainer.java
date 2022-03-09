@@ -19,6 +19,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.LoadSubsystem;
+import frc.robot.commands.LoadCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -56,6 +58,9 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private static final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
 
+  private static final LoadSubsystem m_loadSubsystem = new LoadSubsystem();
+  private static final LoadCommand m_loadCommand = new LoadCommand(m_loadSubsystem);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_driveSubsystem.setDefaultCommand(m_driveCommand);
@@ -85,6 +90,7 @@ public class RobotContainer {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
     new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
     new Button(filteredController::getRightTriggerActive).whileHeld(m_shooterCommand);
+    new Button(filteredController::getAButton).whileHeld(m_loadCommand);
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
       public void run() {
