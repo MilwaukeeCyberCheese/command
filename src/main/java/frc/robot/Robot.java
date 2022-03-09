@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
     colorSensor = new ColorSensor();
 
-    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
   }
 
   /**

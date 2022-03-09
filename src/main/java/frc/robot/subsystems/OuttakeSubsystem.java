@@ -1,12 +1,9 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class OuttakeSubsystem extends SubsystemBase {
-
-    private final CANSparkMax intakeSpark = IntakeSubsystem.intakeSpark;
 
     public OuttakeSubsystem() {}
 
@@ -16,7 +13,7 @@ public class OuttakeSubsystem extends SubsystemBase {
     }
 
     public void drive(double speed) {
-      intakeSpark.set(speed);
+      Constants.controllers.intakeSpark.set(speed);
     }
     
 }

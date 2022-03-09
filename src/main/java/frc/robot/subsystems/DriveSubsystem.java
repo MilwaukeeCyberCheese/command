@@ -7,7 +7,6 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.other.Stopwatch;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -51,16 +50,12 @@ public class DriveSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
-    private final Stopwatch stopwatch;
-
-    public DriveSubsystem() {
-        stopwatch = new Stopwatch();
-    }
+    public DriveSubsystem() {}
 
     @Override
     public void periodic() {
         // this is only used for when planning auto paths
-        if (stopwatch.isRunning())
+        if (RobotContainer.readAuto)
             RobotContainer.m_autoSubsystem.addSpeed(m_chassisSpeeds);
 
         // get my wheel speeds
@@ -84,19 +79,5 @@ public class DriveSubsystem extends SubsystemBase {
 
     public ChassisSpeeds getChassisSpeeds() {
         return m_chassisSpeeds;
-    }
-
-    public void startStopwatch() {
-        stopwatch.start();
-        System.out.println("Stopwatch Started - Begin Tracking Autonomous");
-    }
-
-    public void stopStopwatch() {
-        stopwatch.stop();
-        RobotContainer.m_autoSubsystem.printSpeeds();
-    }
-
-    public Stopwatch getStopwatch() {
-        return stopwatch;
     }
 }

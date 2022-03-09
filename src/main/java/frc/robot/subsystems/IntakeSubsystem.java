@@ -1,24 +1,26 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    public static final CANSparkMax intakeSpark = new CANSparkMax(Constants.controllers.INTAKE_SPARK, MotorType.kBrushless);
+    private double speed;
 
     public IntakeSubsystem() {}
 
     @Override
     public void periodic() {
-  
+      // this is only used for when planning auto paths
+      if (RobotContainer.readAuto)
+          RobotContainer.m_autoSubsystem.addIntaking(speed > 0.0);
+          
+      Constants.controllers.intakeSpark.set(speed);
     }
 
     public void drive(double speed) {
-      intakeSpark.set(speed);
+      this.speed = speed;
     }
     
 }

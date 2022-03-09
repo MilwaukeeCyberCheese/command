@@ -17,7 +17,10 @@ public class AutoSubsystem extends SubsystemBase {
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
     private final Stopwatch stopwatch;
-    private List<ChassisSpeeds> speeds = new LinkedList();
+    private List<ChassisSpeeds> speeds = new LinkedList<ChassisSpeeds>();
+    private List<Boolean> intaking = new LinkedList<Boolean>();
+    private List<Boolean> shooting = new LinkedList<Boolean>();
+    private List<Boolean> servos = new LinkedList<Boolean>();
 
     private static final MecanumDriveKinematics m_kinematics = new MecanumDriveKinematics(
                         // Front left
@@ -31,7 +34,6 @@ public class AutoSubsystem extends SubsystemBase {
 
     public AutoSubsystem() {
         stopwatch = new Stopwatch();
-        System.out.println(speeds);
     }
 
     private int stopwatchCounter = -1;
@@ -41,6 +43,29 @@ public class AutoSubsystem extends SubsystemBase {
             // set m_chassisSpeeds
             stopwatchCounter++;
             m_chassisSpeeds = speeds.get(stopwatchCounter);
+            boolean shoot = shooting.get(stopwatchCounter);
+            boolean intake = intaking.get(stopwatchCounter);
+            boolean servo = servos.get(stopwatchCounter);
+
+            if (shoot) {
+                Constants.controllers.shooterTopSpark.set(Constants.subsystems.shooter.TOP_SPEED);
+                Constants.controllers.shooterBottomSpark.set(Constants.subsystems.shooter.BOTTOM_SPEED);
+            } else {
+                Constants.controllers.shooterTopSpark.set(0);
+                Constants.controllers.shooterBottomSpark.set(0);
+            }
+
+            if (intake) {
+                Constants.controllers.intakeSpark.set(Constants.subsystems.intake.INTAKE_SPEED);
+            } else {
+                Constants.controllers.intakeSpark.set(0);
+            }
+
+            if (servo) {
+                //todo activate servo
+            } else {
+                //todo deactivate servo
+            }
 
             // drive using m_chassisSpeeds
             // get the wheel speeds
@@ -75,14 +100,23 @@ public class AutoSubsystem extends SubsystemBase {
         speeds.add(speed);
     }
 
-    public List<ChassisSpeeds> getSpeeds() {
-        return speeds;
+    public void addIntaking(boolean intake) {
+        intaking.add(intake);
+    }
+
+    public void addShooting(boolean shoot) {
+        shooting.add(shoot);
+    }
+
+    public void addServo(boolean servo) {
+        servos.add(servo);
     }
 
     public void printSpeeds() {
         String toPrint = "";
 
-        toPrint += "{";
+        // append the drive speeds
+        toPrint += "private List<ChassisSpeeds> speeds = {";
         for (int i = 0; i < speeds.size(); i++) {
             ChassisSpeeds speed = speeds.get(i);
             toPrint += "new ChassisSpeeds(";
@@ -96,6 +130,43 @@ public class AutoSubsystem extends SubsystemBase {
         }
         toPrint += "}";
 
+        // append the intake speeds
+        toPrint += "\nprivate List<Boolean> intakeing = {";
+        for (int i = 0; i < intaking.size(); i++) {
+            boolean intake = intaking.get(i);
+            toPrint += intake;
+
+            if (i != intaking.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
+
+        // append the shooter speeds
+        toPrint += "\nprivate List<Boolean> shooting = {";
+        for (int i = 0; i < shooting.size(); i++) {
+            boolean shoot = shooting.get(i);
+            toPrint += shoot;
+
+            if (i != shooting.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
+
+        // append the servo speeds
+        toPrint += "\nprivate List<Boolean> servos = {";
+        for (int i = 0; i < servos.size(); i++) {
+            boolean servo = servos.get(i);
+            toPrint += servo;
+
+            if (i != servos.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
+
+        // print the full string to console
         System.out.println(toPrint);
     }
 }

@@ -27,6 +27,8 @@ import frc.robot.subsystems.ShooterSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  public static boolean readAuto = false;
+
   // input controllers
   private static final XboxController m_controller = new XboxController(0);
   public static final FilteredController filteredController = new FilteredController(m_controller);
@@ -86,10 +88,13 @@ public class RobotContainer {
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
       public void run() {
-        if (!m_driveSubsystem.getStopwatch().isRunning()) {
-          m_driveSubsystem.startStopwatch();
+        if (!readAuto) {
+          readAuto = true;
+          System.out.println("Started - Begin Tracking Autonomous");
         } else {
-          m_driveSubsystem.stopStopwatch();
+          readAuto = false;
+          System.out.println("Ended - Finished Tracking Autonomous");
+          m_autoSubsystem.printSpeeds();
         }
       }
     });
