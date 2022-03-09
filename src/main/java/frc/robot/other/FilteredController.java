@@ -81,6 +81,14 @@ public class FilteredController {
 
     }
 
+    public boolean getAButton(){
+        if (controller.getAButton()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean getLeftTriggerActive() {
         if (controller.getLeftTriggerAxis() > .2) {
             return true;
