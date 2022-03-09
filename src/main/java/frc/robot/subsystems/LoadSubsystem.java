@@ -6,4 +6,15 @@ import frc.robot.RobotContainer;
 
 public class LoadSubsystem extends SubsystemBase {
     
+    public LoadSubsystem(){}
+
+public void periodic(){
+    if(RobotContainer.readAuto){
+        RobotContainer.m_autoSubsystem.addServo(Constants.controllers.loadServo.getPosition() > 0);
+    }
+}
+
+    public void load(){
+        Constants.controllers.loadServo.set(.5);
+    }
 }

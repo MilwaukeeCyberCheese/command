@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Servo;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -37,6 +38,7 @@ public final class Constants {
         public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushless);
         public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
+        public static final Servo loadServo = new Servo(1);
     }
 
     public static final class dimensions {
