@@ -16,13 +16,12 @@ public class ShooterSubsystem extends SubsystemBase {
       // this is only used for when planning auto paths
       if (RobotContainer.readAuto)
           RobotContainer.m_autoSubsystem.addShooting(topSpeed > 0.0 && bottomSpeed > 0.0);
-          
-      Constants.controllers.shooterTopSpark.set(topSpeed);
-      Constants.controllers.shooterBottomSpark.set(bottomSpeed);
     }
 
     public void drive(double topSpeed, double bottomSpeed) {
       this.topSpeed = topSpeed;
       this.bottomSpeed = bottomSpeed;
+      Constants.controllers.shooterTopSpark.set(topSpeed);
+      Constants.controllers.shooterBottomSpark.set(bottomSpeed);
     }
 }

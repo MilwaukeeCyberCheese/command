@@ -34,9 +34,9 @@ public final class Constants {
         public static final CANSparkMax leftRearSpark = new CANSparkMax(DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
         public static final CANSparkMax rightFrontSpark = new CANSparkMax(DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
         public static final CANSparkMax rightRearSpark = new CANSparkMax(DRIVETRAIN_RIGHT_REAR_SPARK, MotorType.kBrushed);
-        public static final CANSparkMax intakeSpark = new CANSparkMax(Constants.controllers.INTAKE_SPARK, MotorType.kBrushless);
-        public static final CANSparkMax shooterTopSpark = new CANSparkMax(Constants.controllers.SHOOTER_TOP_SPARK, MotorType.kBrushed);
-        public static final CANSparkMax shooterBottomSpark = new CANSparkMax(Constants.controllers.SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushless);
+        public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
     }
 
     public static final class dimensions {

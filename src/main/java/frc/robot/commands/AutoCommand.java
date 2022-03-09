@@ -12,16 +12,13 @@ public class AutoCommand extends CommandBase {
     }
     
     @Override
-    public void execute() {
-        m_autoSubsystem.startStopwatch();
-    }
+    public void execute() {}
 
      /**
      * @param interrupted
      */
     @Override
     public void end(boolean interrupted) {
-        m_autoSubsystem.stopStopwatch();
         m_autoSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
     }
 }

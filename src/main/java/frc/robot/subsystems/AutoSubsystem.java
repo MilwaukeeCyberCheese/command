@@ -16,7 +16,6 @@ public class AutoSubsystem extends SubsystemBase {
 
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
-    private final Stopwatch stopwatch;
     private List<ChassisSpeeds> speeds = new LinkedList<ChassisSpeeds>();
     private List<Boolean> intaking = new LinkedList<Boolean>();
     private List<Boolean> shooting = new LinkedList<Boolean>();
@@ -32,40 +31,46 @@ public class AutoSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
-    public AutoSubsystem() {
-        stopwatch = new Stopwatch();
-    }
+    public AutoSubsystem() {}
 
     private int stopwatchCounter = -1;
     @Override
     public void periodic() {
-        if (DriverStation.isAutonomousEnabled() && stopwatchCounter < speeds.size()) { 
-            // set m_chassisSpeeds
+        if (DriverStation.isAutonomousEnabled() && stopwatchCounter < speeds.size() - 1) { 
             stopwatchCounter++;
-            m_chassisSpeeds = speeds.get(stopwatchCounter);
+            
+            // shoot
             boolean shoot = shooting.get(stopwatchCounter);
-            boolean intake = intaking.get(stopwatchCounter);
-            boolean servo = servos.get(stopwatchCounter);
-
+                
             if (shoot) {
                 Constants.controllers.shooterTopSpark.set(Constants.subsystems.shooter.TOP_SPEED);
                 Constants.controllers.shooterBottomSpark.set(Constants.subsystems.shooter.BOTTOM_SPEED);
             } else {
-                Constants.controllers.shooterTopSpark.set(0);
-                Constants.controllers.shooterBottomSpark.set(0);
+                Constants.controllers.shooterTopSpark.set(0.0);
+                Constants.controllers.shooterBottomSpark.set(0.0);
             }
 
+            // intake
+            boolean intake = intaking.get(stopwatchCounter);
+                
             if (intake) {
                 Constants.controllers.intakeSpark.set(Constants.subsystems.intake.INTAKE_SPEED);
             } else {
-                Constants.controllers.intakeSpark.set(0);
+                Constants.controllers.intakeSpark.set(0.0);
             }
 
-            if (servo) {
-                //todo activate servo
-            } else {
-                //todo deactivate servo
+            // servos
+            if (stopwatchCounter < servos.size() - 1) {
+                boolean servo = servos.get(stopwatchCounter);
+
+                if (servo) {
+                    //todo activate servo
+                } else {
+                    //todo deactivate servo
+                }
             }
+            
+            m_chassisSpeeds = speeds.get(stopwatchCounter);
 
             // drive using m_chassisSpeeds
             // get the wheel speeds
@@ -88,14 +93,6 @@ public class AutoSubsystem extends SubsystemBase {
         m_chassisSpeeds = chassisSpeeds;
     }
 
-    public void startStopwatch() {
-        stopwatch.start();
-    }
-
-    public void stopStopwatch() {
-        stopwatch.stop();
-    }
-
     public void addSpeed(ChassisSpeeds speed) {
         speeds.add(speed);
     }
@@ -115,56 +112,61 @@ public class AutoSubsystem extends SubsystemBase {
     public void printSpeeds() {
         String toPrint = "";
 
-        // append the drive speeds
-        toPrint += "private List<ChassisSpeeds> speeds = {";
-        for (int i = 0; i < speeds.size(); i++) {
-            ChassisSpeeds speed = speeds.get(i);
-            toPrint += "new ChassisSpeeds(";
-            toPrint += speed.vxMetersPerSecond + ",";
-            toPrint += speed.vyMetersPerSecond + ",";;
-            toPrint += speed.omegaRadiansPerSecond + ")";
+        toPrint += speeds.size();
+        toPrint += "\n" + intaking.size();
+        toPrint += "\n" + shooting.size();
+        toPrint += "\n" + servos.size();
 
-            if (i != speeds.size() - 1) {
-                toPrint += ",";
-            }
-        }
-        toPrint += "}";
+        // // append the drive speeds
+        // toPrint += "private List<ChassisSpeeds> speeds = {";
+        // for (int i = 0; i < speeds.size(); i++) {
+        //     ChassisSpeeds speed = speeds.get(i);
+        //     toPrint += "new ChassisSpeeds(";
+        //     toPrint += speed.vxMetersPerSecond + ",";
+        //     toPrint += speed.vyMetersPerSecond + ",";;
+        //     toPrint += speed.omegaRadiansPerSecond + ")";
 
-        // append the intake speeds
-        toPrint += "\nprivate List<Boolean> intakeing = {";
-        for (int i = 0; i < intaking.size(); i++) {
-            boolean intake = intaking.get(i);
-            toPrint += intake;
+        //     if (i != speeds.size() - 1) {
+        //         toPrint += ",";
+        //     }
+        // }
+        // toPrint += "}";
 
-            if (i != intaking.size() - 1) {
-                toPrint += ",";
-            }
-        }
-        toPrint += "}";
+        // // append the intake speeds
+        // toPrint += "\nprivate List<Boolean> intakeing = {";
+        // for (int i = 0; i < intaking.size(); i++) {
+        //     boolean intake = intaking.get(i);
+        //     toPrint += intake;
 
-        // append the shooter speeds
-        toPrint += "\nprivate List<Boolean> shooting = {";
-        for (int i = 0; i < shooting.size(); i++) {
-            boolean shoot = shooting.get(i);
-            toPrint += shoot;
+        //     if (i != intaking.size() - 1) {
+        //         toPrint += ",";
+        //     }
+        // }
+        // toPrint += "}";
 
-            if (i != shooting.size() - 1) {
-                toPrint += ",";
-            }
-        }
-        toPrint += "}";
+        // // append the shooter speeds
+        // toPrint += "\nprivate List<Boolean> shooting = {";
+        // for (int i = 0; i < shooting.size(); i++) {
+        //     boolean shoot = shooting.get(i);
+        //     toPrint += shoot;
 
-        // append the servo speeds
-        toPrint += "\nprivate List<Boolean> servos = {";
-        for (int i = 0; i < servos.size(); i++) {
-            boolean servo = servos.get(i);
-            toPrint += servo;
+        //     if (i != shooting.size() - 1) {
+        //         toPrint += ",";
+        //     }
+        // }
+        // toPrint += "}";
 
-            if (i != servos.size() - 1) {
-                toPrint += ",";
-            }
-        }
-        toPrint += "}";
+        // // append the servo speeds
+        // toPrint += "\nprivate List<Boolean> servos = {";
+        // for (int i = 0; i < servos.size(); i++) {
+        //     boolean servo = servos.get(i);
+        //     toPrint += servo;
+
+        //     if (i != servos.size() - 1) {
+        //         toPrint += ",";
+        //     }
+        // }
+        // toPrint += "}";
 
         // print the full string to console
         System.out.println(toPrint);
