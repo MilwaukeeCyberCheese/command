@@ -1,5 +1,8 @@
 package frc.robot.subsystems;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -117,58 +120,62 @@ public class AutoSubsystem extends SubsystemBase {
         toPrint += "\n" + shooting.size();
         toPrint += "\n" + servos.size();
 
-        // // append the drive speeds
-        // toPrint += "private List<ChassisSpeeds> speeds = {";
-        // for (int i = 0; i < speeds.size(); i++) {
-        //     ChassisSpeeds speed = speeds.get(i);
-        //     toPrint += "new ChassisSpeeds(";
-        //     toPrint += speed.vxMetersPerSecond + ",";
-        //     toPrint += speed.vyMetersPerSecond + ",";;
-        //     toPrint += speed.omegaRadiansPerSecond + ")";
+        // append the drive speeds
+        toPrint += "private List<ChassisSpeeds> speeds = {";
+        for (int i = 0; i < speeds.size(); i++) {
+            ChassisSpeeds speed = speeds.get(i);
+            toPrint += "new ChassisSpeeds(";
+            toPrint += speed.vxMetersPerSecond + ",";
+            toPrint += speed.vyMetersPerSecond + ",";;
+            toPrint += speed.omegaRadiansPerSecond + ")";
 
-        //     if (i != speeds.size() - 1) {
-        //         toPrint += ",";
-        //     }
-        // }
-        // toPrint += "}";
+            if (i != speeds.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
 
-        // // append the intake speeds
-        // toPrint += "\nprivate List<Boolean> intakeing = {";
-        // for (int i = 0; i < intaking.size(); i++) {
-        //     boolean intake = intaking.get(i);
-        //     toPrint += intake;
+        // append the intake speeds
+        toPrint += "\nprivate List<Boolean> intakeing = {";
+        for (int i = 0; i < intaking.size(); i++) {
+            boolean intake = intaking.get(i);
+            toPrint += intake;
 
-        //     if (i != intaking.size() - 1) {
-        //         toPrint += ",";
-        //     }
-        // }
-        // toPrint += "}";
+            if (i != intaking.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
 
-        // // append the shooter speeds
-        // toPrint += "\nprivate List<Boolean> shooting = {";
-        // for (int i = 0; i < shooting.size(); i++) {
-        //     boolean shoot = shooting.get(i);
-        //     toPrint += shoot;
+        // append the shooter speeds
+        toPrint += "\nprivate List<Boolean> shooting = {";
+        for (int i = 0; i < shooting.size(); i++) {
+            boolean shoot = shooting.get(i);
+            toPrint += shoot;
 
-        //     if (i != shooting.size() - 1) {
-        //         toPrint += ",";
-        //     }
-        // }
-        // toPrint += "}";
+            if (i != shooting.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
 
-        // // append the servo speeds
-        // toPrint += "\nprivate List<Boolean> servos = {";
-        // for (int i = 0; i < servos.size(); i++) {
-        //     boolean servo = servos.get(i);
-        //     toPrint += servo;
+        // append the servo speeds
+        toPrint += "\nprivate List<Boolean> servos = {";
+        for (int i = 0; i < servos.size(); i++) {
+            boolean servo = servos.get(i);
+            toPrint += servo;
 
-        //     if (i != servos.size() - 1) {
-        //         toPrint += ",";
-        //     }
-        // }
-        // toPrint += "}";
+            if (i != servos.size() - 1) {
+                toPrint += ",";
+            }
+        }
+        toPrint += "}";
 
-        // print the full string to console
-        System.out.println(toPrint);
+        // print the full string to file for analysis
+        try {
+            PrintWriter writer = new PrintWriter("auto-output.txt", "UTF-8");
+            writer.println(toPrint);
+            writer.close();
+        } catch (Exception ignored) {}
     }
 }
