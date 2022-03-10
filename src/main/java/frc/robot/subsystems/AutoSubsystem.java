@@ -136,7 +136,7 @@ public class AutoSubsystem extends SubsystemBase {
         toPrint += "}";
 
         // append the intake speeds
-        toPrint += "\nprivate List<Boolean> intakeing = {";
+        toPrint += "\n\nprivate List<Boolean> intakeing = {";
         for (int i = 0; i < intaking.size(); i++) {
             boolean intake = intaking.get(i);
             toPrint += intake;
@@ -148,7 +148,7 @@ public class AutoSubsystem extends SubsystemBase {
         toPrint += "}";
 
         // append the shooter speeds
-        toPrint += "\nprivate List<Boolean> shooting = {";
+        toPrint += "\n\nprivate List<Boolean> shooting = {";
         for (int i = 0; i < shooting.size(); i++) {
             boolean shoot = shooting.get(i);
             toPrint += shoot;
@@ -160,7 +160,7 @@ public class AutoSubsystem extends SubsystemBase {
         toPrint += "}";
 
         // append the servo speeds
-        toPrint += "\nprivate List<Boolean> servos = {";
+        toPrint += "\n\nprivate List<Boolean> servos = {";
         for (int i = 0; i < servos.size(); i++) {
             boolean servo = servos.get(i);
             toPrint += servo;
