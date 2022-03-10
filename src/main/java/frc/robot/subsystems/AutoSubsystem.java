@@ -89,6 +89,16 @@ public class AutoSubsystem extends SubsystemBase {
             Constants.controllers.leftRearSpark.set(-leftRearSpeed);
             Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
             Constants.controllers.rightRearSpark.set(rightRearSpeed);
+        } else if (DriverStation.isAutonomousEnabled() && stopwatchCounter >= speeds.size() - 1) {
+            // if we run out of code to run in auto, make sure everything is not moving
+            Constants.controllers.shooterTopSpark.set(0.0);
+            Constants.controllers.shooterBottomSpark.set(0.0);
+            Constants.controllers.intakeSpark.set(0.0);
+            Constants.controllers.servo.set(0.0);
+            Constants.controllers.leftFrontSpark.set(0.0);
+            Constants.controllers.leftRearSpark.set(0.0);
+            Constants.controllers.rightFrontSpark.set(0.0);
+            Constants.controllers.rightRearSpark.set(0.0);
         }
     } 
 
