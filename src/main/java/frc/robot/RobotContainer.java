@@ -12,15 +12,15 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.OuttakeCommand;
+import frc.robot.commands.ServoCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.OuttakeSubsystem;
+import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.LoadSubsystem;
-import frc.robot.commands.LoadCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -58,8 +58,8 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private static final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
 
-  private static final LoadSubsystem m_loadSubsystem = new LoadSubsystem();
-  private static final LoadCommand m_loadCommand = new LoadCommand(m_loadSubsystem);
+  private static final ServoSubsystem m_servoSubsystem = new ServoSubsystem();
+  private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -90,7 +90,7 @@ public class RobotContainer {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
     new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
     new Button(filteredController::getRightTriggerActive).whileHeld(m_shooterCommand);
-    new Button(filteredController::getAButton).whileHeld(m_loadCommand);
+    new Button(filteredController::getAButton).whileHeld(m_servoCommand);
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
       public void run() {

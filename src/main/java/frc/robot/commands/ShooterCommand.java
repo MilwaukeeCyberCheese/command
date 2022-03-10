@@ -26,7 +26,6 @@ public class ShooterCommand extends CommandBase {
         //     }
         // } else {
             m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_SPEED, Constants.subsystems.shooter.BOTTOM_SPEED);
-            //todo activate servo?
         // }
     }
 

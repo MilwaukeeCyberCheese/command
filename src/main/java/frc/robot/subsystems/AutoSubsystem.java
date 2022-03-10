@@ -64,9 +64,9 @@ public class AutoSubsystem extends SubsystemBase {
                 boolean servo = servos.get(stopwatchCounter);
 
                 if (servo) {
-                    //todo activate servo
+                    Constants.controllers.servo.set(0.5);
                 } else {
-                    //todo deactivate servo
+                    Constants.controllers.servo.set(0.0);
                 }
             }
             

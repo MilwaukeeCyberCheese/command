@@ -38,7 +38,7 @@ public final class Constants {
         public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushless);
         public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
-        public static final Servo loadServo = new Servo(0);
+        public static final Servo servo = new Servo(0);
     }
 
     public static final class dimensions {
