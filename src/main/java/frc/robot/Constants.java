@@ -66,15 +66,15 @@ public final class Constants {
         }
 
         public final class shooter {
-            public static final double TOP_SPEED = -0.9;
-            public static final double BOTTOM_SPEED = 0.9;
+            public static final double TOP_SPEED = -0.75;
+            public static final double BOTTOM_SPEED = 1.1;
             public static final double TOP_WRONG_BALL_SPEED = 0.1;
             public static final double BOTTOM_WRONG_BALL_SPEED = -0.1;
         }
     }
 
     public static final class outputs {
-        public static final double strafe = 0.1;
-        public static final double turnRate = 0.1;
+        public static final double strafe = 0.4;
+        public static final double turnRate = 0.4;
     }
 }
