@@ -1,8 +1,6 @@
 package frc.robot.subsystems;
 
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,12 +11,12 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.other.Stopwatch;
 
 public class AutoSubsystem extends SubsystemBase {
 
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
+    // the following lists store data relating to the preprogrammed auto paths
     private List<ChassisSpeeds> speeds = new LinkedList<ChassisSpeeds>();
     private List<Boolean> intaking = new LinkedList<Boolean>();
     private List<Boolean> shooting = new LinkedList<Boolean>();
@@ -34,9 +32,13 @@ public class AutoSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
-    public AutoSubsystem() {}
-
     private int stopwatchCounter = -1;
+
+    /**
+     * This function is called every few milliseconds when the robot is enabled
+     * 
+     * For this subsystem, this function drives all auto paths
+     */
     @Override
     public void periodic() {
         if (DriverStation.isAutonomousEnabled() && stopwatchCounter < speeds.size() - 1) { 
@@ -102,10 +104,18 @@ public class AutoSubsystem extends SubsystemBase {
         }
     } 
 
+    /**
+     * This function is called when the button on the controller to operate this subsystem is activated
+     * 
+     * @param speed The speed to move this subsystem at
+     */
     public void drive(ChassisSpeeds chassisSpeeds) {
         m_chassisSpeeds = chassisSpeeds;
     }
 
+    /**
+     * The following functions all are used to preprogram the auto paths
+     */
     public void addSpeed(ChassisSpeeds speed) {
         speeds.add(speed);
     }

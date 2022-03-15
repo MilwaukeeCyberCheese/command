@@ -30,7 +30,11 @@ public final class Constants {
         public static final int SHOOTER_BOTTOM_SPARK = 6;
         public static final int CLIMBER_SPARK = 1; // this is likely unused 
 
-
+        /** 
+         * These static objects are used throughout the program.
+         * Access this object using the following code, for example:
+         * Constants.controllers.leftFrontSpark
+         */
         public static final CANSparkMax leftFrontSpark = new CANSparkMax(DRIVETRAIN_LEFT_FRONT_SPARK, MotorType.kBrushed);
         public static final CANSparkMax leftRearSpark = new CANSparkMax(DRIVETRAIN_LEFT_REAR_SPARK, MotorType.kBrushed);
         public static final CANSparkMax rightFrontSpark = new CANSparkMax(DRIVETRAIN_RIGHT_FRONT_SPARK, MotorType.kBrushed);
@@ -41,6 +45,9 @@ public final class Constants {
         public static final Servo servo = new Servo(0);
     }
 
+    /**
+     * These dimensions are used in calculating some of the values for driving the robot
+     */
     public static final class dimensions {
         public static final double TRACKWIDTH = Units.inchesToMeters(24);
         public static final double WHEELBASE = Units.inchesToMeters(20.25);
@@ -48,10 +55,14 @@ public final class Constants {
         public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
     }
 
+    /**
+     * These values all relate to the various subsystems that are throughout the robot code
+     * 
+     * All motors with a fixed speed can be found here
+     */
     public static final class subsystems {
         public static final class drive {
             // <Motor free speed RPM> / 60 * <Drive reduction> * <Wheel diameter meters> * pi
-            // public static final double MAX_VEL_METERS = (5310 / 60) * (1/10.71) * 0.1524 * Math.PI;
             public static final double MAX_VEL_METERS = 5310.0 / 60.0
                     * Constants.dimensions.DRIVE_REDUCTION
                     * Constants.dimensions.WHEEL_DIAMETER * Math.PI;
@@ -59,22 +70,25 @@ public final class Constants {
                 / Math.hypot(Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0);
             public static final double MAX_ANG_ACCEL = 8 * Math.PI;
             public static final double MAX_VOLTAGE = 12.0;   
+
+            // These values relate directly to the drive speed
+            // strafe affects the speed of the robot when driving directionally
+            // turnRate affects the speed the robot can rotate on a point
+            public static final double strafe = 0.4;
+            public static final double turnRate = 0.4;
         }
 
         public final class intake {
+            // This is the constant speed when the intake is activated
             public static final double INTAKE_SPEED = 1.0;
         }
 
         public final class shooter {
+            // These are constant speeds when the shooter is activated
             public static final double TOP_SPEED = -0.8;
             public static final double BOTTOM_SPEED = 1.0;
             public static final double TOP_WRONG_BALL_SPEED = 0.1;
             public static final double BOTTOM_WRONG_BALL_SPEED = -0.1;
         }
-    }
-
-    public static final class outputs {
-        public static final double strafe = 0.25;
-        public static final double turnRate = 0.3;
     }
 }

@@ -18,8 +18,9 @@ public class IntakeCommand extends CommandBase {
         m_intakeSubsystem.drive(Constants.subsystems.intake.INTAKE_SPEED);
     }
 
-     /**
-     * @param interrupted
+    /**
+     * This function ensures when the action is complete, the robot stops moving
+     * @param interrupted 
      */
     @Override
     public void end(boolean interrupted) {

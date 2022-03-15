@@ -55,6 +55,12 @@ public class FilteredController {
         return new InputFilter(controller.getRightY()).getFiltered(deadzone);
     }
 
+    /**
+     * Returns if the right trigger is active or not within a deadzone
+     * 
+     * @param deadzone
+     * @return boolean
+     */
     public boolean getRightTriggerActive(double deadzone) {
         if (controller.getRightTriggerAxis() > deadzone) {
             return true;
@@ -63,6 +69,13 @@ public class FilteredController {
         }
 
     }
+
+    /**
+     * Returns if the left trigger is active or not within a deadzone
+     * 
+     * @param deadzone
+     * @return boolean
+     */
     public boolean getLeftTriggerActive(double deadzone) {
         if (controller.getLeftTriggerAxis() > deadzone) {
             return true;
@@ -72,6 +85,11 @@ public class FilteredController {
 
     }
 
+    /**
+     * Returns whether or not the right trigger is pressed or not with a hard-coded deadzone
+     * 
+     * @return boolean
+     */
     public boolean getRightTriggerActive() {
         if (controller.getRightTriggerAxis() > .2) {
             return true;
@@ -81,14 +99,11 @@ public class FilteredController {
 
     }
 
-    public boolean getAButton(){
-        if (controller.getAButton()){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    /**
+     * Returns whether or not the left trigger is pressed or not with a hard-coded deadzone
+     * 
+     * @return boolean
+     */
     public boolean getLeftTriggerActive() {
         if (controller.getLeftTriggerAxis() > .2) {
             return true;
@@ -98,16 +113,31 @@ public class FilteredController {
 
     }
 
+    /**
+     * Returns if the A button is pressed or not
+     * 
+     * @return boolean
+     */
+    public boolean getAButton(){
+        if (controller.getAButton()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /** 
+     * Returns if any POVButton is pressed or not
+     * 
      * @return boolean
      */
     public boolean getPOVPressed() {
         return controller.getPOV() != -1;
     }
 
-    
     /** 
+     * Returns depending on which POVButton is pressed
+     * 
      * @return int
      */
     public int getPOVButton() {
@@ -158,10 +188,19 @@ public class FilteredController {
         }
     }
 
+    /**
+     * Returns whether the left bumper is pressed or not
+     * 
+     * @return boolean
+     */
     public boolean getLeftBumper() {
         return controller.getLeftBumper();
     }
 
+    /**
+     * Returns whether the right bumper is pressed or not
+     * @return boolean
+     */
     public boolean getRightBumper() {
         return controller.getRightBumper();
     }

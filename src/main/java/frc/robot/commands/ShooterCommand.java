@@ -29,7 +29,10 @@ public class ShooterCommand extends CommandBase {
         // }
     }
 
-     
+    /**
+     * This function ensures when the action is complete, the robot stops moving
+     * @param interrupted 
+     */
     @Override
     public void end(boolean interrupted) {
         m_shooterSubsystem.drive(0.0, 0.0);

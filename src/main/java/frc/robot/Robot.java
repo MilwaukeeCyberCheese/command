@@ -36,6 +36,8 @@ public class Robot extends TimedRobot {
 
     colorSensor = new ColorSensor();
 
+    // This will automatically send the camera data to the SmartDashboard.
+    // The RoboRIO just "knows" the camera is plugged into it. Consider it magic, if you will.
     CameraServer.startAutomaticCapture();
   }
 

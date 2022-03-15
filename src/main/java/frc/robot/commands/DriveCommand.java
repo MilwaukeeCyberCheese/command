@@ -38,8 +38,9 @@ public class DriveCommand extends CommandBase {
         m_driveSubsystem.drive(new ChassisSpeeds(inputX, inputY, inputRot));
     }
 
-     /**
-     * @param interrupted
+    /**
+     * This function ensures when the action is complete, the robot stops moving
+     * @param interrupted 
      */
     @Override
     public void end(boolean interrupted) {

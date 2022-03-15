@@ -50,15 +50,18 @@ public class DriveSubsystem extends SubsystemBase {
                         // Back right
                         new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
-    public DriveSubsystem() {}
-
+     /**
+     * This function is called every few milliseconds when the robot is enabled
+     * 
+     * For this subsystem, this function drives the robot based on the stick parameters
+     */
     @Override
     public void periodic() {
         // this is only used for when planning auto paths
         if (RobotContainer.readAuto)
             RobotContainer.m_autoSubsystem.addSpeed(m_chassisSpeeds);
 
-        // get my wheel speeds
+        // get the wheel speeds
         MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);
       
         // get the individual wheel speeds
@@ -67,12 +70,18 @@ public class DriveSubsystem extends SubsystemBase {
         double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
         double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
         
+        // set the speeds to each controller
         Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
         Constants.controllers.leftRearSpark.set(-leftRearSpeed);
         Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
         Constants.controllers.rightRearSpark.set(rightRearSpeed);
     }
 
+    /**
+     * This function is called when the button on the controller to operate this subsystem is activated
+     * 
+     * @param speed The speed to move this subsystem at
+     */
     public void drive(ChassisSpeeds chassisSpeeds) {
         m_chassisSpeeds = chassisSpeeds;
     }
