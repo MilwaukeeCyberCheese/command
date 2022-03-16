@@ -6,6 +6,7 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
+import frc.robot.commands.ServoCommand;
 
 public class ShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
@@ -28,17 +29,13 @@ public class ShooterCommand extends CommandBase {
         // } else {
             m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_SPEED, Constants.subsystems.shooter.BOTTOM_SPEED);
 
+            
+
             if(
                 Constants.controllers.shooterTopSpark.get() == Constants.subsystems.shooter.TOP_SPEED 
                 && 
                 Constants.controllers.shooterBottomSpark.get() == Constants.subsystems.shooter.BOTTOM_SPEED)
                 {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
                 Constants.controllers.servo.set(0.2);
             } else{
                 Constants.controllers.servo.set(0.4);
@@ -53,5 +50,6 @@ public class ShooterCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_shooterSubsystem.drive(0.0, 0.0);
+        Constants.controllers.servo.set(0.4);
     }
 }
