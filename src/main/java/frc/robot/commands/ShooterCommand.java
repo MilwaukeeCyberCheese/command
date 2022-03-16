@@ -29,9 +29,9 @@ public class ShooterCommand extends CommandBase {
             m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_SPEED, Constants.subsystems.shooter.BOTTOM_SPEED);
 
             if(
-                Constants.controllers.shooterTopSpark.getVelocity() == Constants.subsystems.shooter.TOP_SPEED 
+                Constants.controllers.shooterTopSpark.get() == Constants.subsystems.shooter.TOP_SPEED 
                 && 
-                Constants.controllers.shooterBottomSpark.getSpeed() == Constants.subsystems.shooter.BOTTOM_SPEED)
+                Constants.controllers.shooterBottomSpark.get() == Constants.subsystems.shooter.BOTTOM_SPEED)
                 {
                 Constants.controllers.servo.set(0.2);
             } else{
