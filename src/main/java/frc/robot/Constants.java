@@ -85,8 +85,8 @@ public final class Constants {
 
         public final class shooter {
             // These are constant speeds when the shooter is activated
-            public static final double TOP_SPEED = -0.8;
-            public static final double BOTTOM_SPEED = 1.0;
+            public static final double TOP_SPEED = -0.575;
+            public static final double BOTTOM_SPEED = 1.2;
             public static final double TOP_WRONG_BALL_SPEED = 0.1;
             public static final double BOTTOM_WRONG_BALL_SPEED = -0.1;
         }
