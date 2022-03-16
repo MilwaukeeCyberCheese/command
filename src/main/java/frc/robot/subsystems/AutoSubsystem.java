@@ -48,8 +48,8 @@ public class AutoSubsystem extends SubsystemBase {
             boolean shoot = shooting.get(stopwatchCounter);
                 
             if (shoot) {
-                Constants.controllers.shooterTopSpark.set(Constants.subsystems.shooter.TOP_SPEED);
-                Constants.controllers.shooterBottomSpark.set(Constants.subsystems.shooter.BOTTOM_SPEED);
+                Constants.controllers.shooterTopSpark.set(Constants.subsystems.shooter.HIGH_TOP_SPEED);
+                Constants.controllers.shooterBottomSpark.set(Constants.subsystems.shooter.HIGH_BOTTOM_SPEED);
             } else {
                 Constants.controllers.shooterTopSpark.set(0.0);
                 Constants.controllers.shooterBottomSpark.set(0.0);

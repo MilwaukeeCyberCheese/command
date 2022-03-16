@@ -11,11 +11,11 @@ import frc.robot.other.Stopwatch;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.StopBits;
 
-public class ShooterCommand extends CommandBase {
+public class LowShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
     private final Stopwatch timer;
 
-    public ShooterCommand(ShooterSubsystem m_shooterSubsystem) {
+    public LowShooterCommand(ShooterSubsystem m_shooterSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
         timer = new Stopwatch();
         addRequirements(m_shooterSubsystem);
@@ -40,7 +40,7 @@ public class ShooterCommand extends CommandBase {
         // //todo activate servo?
         // }
         // } else {
-        m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_SPEED, Constants.subsystems.shooter.BOTTOM_SPEED);
+        m_shooterSubsystem.drive(Constants.subsystems.shooter.LOW_TOP_SPEED, Constants.subsystems.shooter.LOW_BOTTOM_SPEED);
 
         if (timer.getTime() > 800) {
             Constants.controllers.servo.set(0.2);
