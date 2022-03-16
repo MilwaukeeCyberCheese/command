@@ -33,6 +33,12 @@ public class ShooterCommand extends CommandBase {
                 && 
                 Constants.controllers.shooterBottomSpark.get() == Constants.subsystems.shooter.BOTTOM_SPEED)
                 {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 Constants.controllers.servo.set(0.2);
             } else{
                 Constants.controllers.servo.set(0.4);
