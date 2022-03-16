@@ -71,10 +71,11 @@ public class DriveSubsystem extends SubsystemBase {
         double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
         
         // set the speeds to each controller
-        Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
+        Constants.controllers.rightRearSpark.set(rightRearSpeed);
         Constants.controllers.leftRearSpark.set(-leftRearSpeed);
         Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
-        Constants.controllers.rightRearSpark.set(rightRearSpeed);
+        Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
+        
     }
 
     /**
