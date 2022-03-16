@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ServoSubsystem;
 
 public class ShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
@@ -26,6 +27,16 @@ public class ShooterCommand extends CommandBase {
         //     }
         // } else {
             m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_SPEED, Constants.subsystems.shooter.BOTTOM_SPEED);
+
+            if(
+                Constants.controllers.shooterTopSpark.getVelocity() == Constants.subsystems.shooter.TOP_SPEED 
+                && 
+                Constants.controllers.shooterBottomSpark.getSpeed() == Constants.subsystems.shooter.BOTTOM_SPEED)
+                {
+                Constants.controllers.servo.set(0.2);
+            } else{
+                Constants.controllers.servo.set(0.4);
+            }
         // }
     }
 
