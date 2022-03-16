@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.LowShooterCommand;
 import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ServoCommand;
-import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.HighShooterCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -56,7 +57,9 @@ public class RobotContainer {
   private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_outtakeSubsystem);
 
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private static final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooterSubsystem);
+  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem);
+  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
+
 
   private static final ServoSubsystem m_servoSubsystem = new ServoSubsystem();
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
@@ -89,7 +92,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
     new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
-    new Button(filteredController::getRightTriggerActive).whileHeld(m_shooterCommand);
+    new Button(filteredController::getRightTriggerActive).whileHeld(m_highShooterCommand);
+    new Button(filteredController::getRightBumper).whileHeld(m_lowShooterCommand);
     new Button(filteredController::getAButton).whileHeld(m_servoCommand);
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
