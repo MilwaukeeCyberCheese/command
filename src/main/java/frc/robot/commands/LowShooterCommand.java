@@ -1,22 +1,19 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
-import frc.robot.commands.ServoCommand;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.other.Stopwatch;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.SerialPort.StopBits;
 
 public class LowShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
+    private final ServoSubsystem m_servoSubsystem;
     private final Stopwatch timer;
 
-    public LowShooterCommand(ShooterSubsystem m_shooterSubsystem) {
+    public LowShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
+        this.m_servoSubsystem = m_servoSubsystem;
         timer = new Stopwatch();
         addRequirements(m_shooterSubsystem);
     }
@@ -43,9 +40,9 @@ public class LowShooterCommand extends CommandBase {
         m_shooterSubsystem.drive(Constants.subsystems.shooter.LOW_TOP_SPEED, Constants.subsystems.shooter.LOW_BOTTOM_SPEED);
 
         if (timer.getTime() > 800) {
-            Constants.controllers.servo.set(0.2);
+            m_servoSubsystem.drive(0.2);
         } else {
-            Constants.controllers.servo.set(0.4);
+            m_servoSubsystem.drive(0.4);
         }
         // }
     }

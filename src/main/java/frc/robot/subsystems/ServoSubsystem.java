@@ -12,9 +12,8 @@ public class ServoSubsystem extends SubsystemBase {
      * For this subsystem, this function helps record auto paths
      */
     public void periodic() {
-        if (RobotContainer.readAuto) {
-            RobotContainer.m_autoSubsystem.addServo(Constants.controllers.servo.getPosition() > 0);
-        }
+        if (RobotContainer.readAuto)
+            RobotContainer.m_autoSubsystem.addServo(Constants.controllers.servo.getPosition());
     }
 
     /**
