@@ -41,9 +41,9 @@ public class HighShooterCommand extends CommandBase {
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
 
         if (timer.getTime() > 800) {
-            Constants.controllers.servo.set(0.0);
+            Constants.controllers.servo.set(Constants.subsystems.servo.OPEN_POS);
         } else {
-            Constants.controllers.servo.set(0.25);
+            Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
         }
     }
 
@@ -57,7 +57,7 @@ public class HighShooterCommand extends CommandBase {
         topSpeed = 0.0;
         bottomSpeed = 0.0;
         m_shooterSubsystem.drive(0.0, 0.0);
-        Constants.controllers.servo.set(0.25);
+        Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
         timer.stop();
         timer.reset();
     }

@@ -69,9 +69,9 @@ public class AutoSubsystem extends SubsystemBase {
                 boolean servo = servos.get(stopwatchCounter);
 
                 if (servo) {
-                    Constants.controllers.servo.set(0.4);
+                    Constants.controllers.servo.set(Constants.subsystems.servo.OPEN_POS);
                 } else {
-                    Constants.controllers.servo.set(0.2);
+                    Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
                 }
             }
             
@@ -96,7 +96,7 @@ public class AutoSubsystem extends SubsystemBase {
             Constants.controllers.shooterTopSpark.set(0.0);
             Constants.controllers.shooterBottomSpark.set(0.0);
             Constants.controllers.intakeSpark.set(0.0);
-            Constants.controllers.servo.set(0.2);
+            Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
             Constants.controllers.leftFrontSpark.set(0.0);
             Constants.controllers.leftRearSpark.set(0.0);
             Constants.controllers.rightFrontSpark.set(0.0);

@@ -29,9 +29,9 @@ public class LowShooterCommand extends CommandBase {
         }
 
         if (timer.getTime() > 800) {
-            Constants.controllers.servo.set(0.0);
+            Constants.controllers.servo.set(Constants.subsystems.servo.OPEN_POS);
         } else {
-            Constants.controllers.servo.set(0.25);
+            Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
         }
 
         if (timer.getTime() > 1400) {
@@ -49,7 +49,7 @@ public class LowShooterCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_shooterSubsystem.drive(0.0, 0.0);
-        Constants.controllers.servo.set(0.25);
+        Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
         timer.stop();
         timer.reset();
     }
