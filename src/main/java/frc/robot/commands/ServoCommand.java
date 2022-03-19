@@ -14,7 +14,7 @@ public class ServoCommand extends CommandBase {
 
     @Override
     public void execute() {
-        m_servoSubsystem.drive(0.2);
+        m_servoSubsystem.drive(0.0);
     }
 
     
@@ -24,6 +24,6 @@ public class ServoCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        m_servoSubsystem.drive(0.4);
+        m_servoSubsystem.drive(0.25);
     }
 }

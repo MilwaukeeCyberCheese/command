@@ -28,26 +28,17 @@ public class LowShooterCommand extends CommandBase {
             timer.start();
         }
 
-        // this will spit the ball out nicely if the ball color does not match alliance
-        // color
-        // if (Robot.getColorSensor().hasBall()) {
-        // if (Robot.getColorSensor().isRedBall() && DriverStation.getAlliance() !=
-        // DriverStation.Alliance.Red
-        // || Robot.getColorSensor().isBlueBall() && DriverStation.getAlliance() !=
-        // DriverStation.Alliance.Blue) {
-        // m_shooterSubsystem.drive(Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED,
-        // Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED);
-        // //todo activate servo?
-        // }
-        // } else {
-        m_shooterSubsystem.drive(Constants.subsystems.shooter.LOW_TOP_SPEED, Constants.subsystems.shooter.LOW_BOTTOM_SPEED);
-
         if (timer.getTime() > 800) {
-            Constants.controllers.servo.set(0.2);
+            Constants.controllers.servo.set(0.0);
         } else {
-            Constants.controllers.servo.set(0.4);
+            Constants.controllers.servo.set(0.25);
         }
-        // }
+
+        if (timer.getTime() > 1400) {
+            m_shooterSubsystem.drive(0.0, 0.0);
+        } else {
+            m_shooterSubsystem.drive(Constants.subsystems.shooter.LOW_TOP_SPEED, Constants.subsystems.shooter.LOW_BOTTOM_SPEED);
+        }
     }
 
     /**
@@ -58,7 +49,7 @@ public class LowShooterCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_shooterSubsystem.drive(0.0, 0.0);
-        Constants.controllers.servo.set(0.4);
+        Constants.controllers.servo.set(0.25);
         timer.stop();
         timer.reset();
     }

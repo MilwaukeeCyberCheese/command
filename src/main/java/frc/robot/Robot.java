@@ -4,11 +4,13 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.other.ColorSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,7 +24,8 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   // color sensor for determining the color of the ball
-  public static ColorSensor colorSensor;
+  // public static ColorSensor colorSensor;
+  public static ColorSensorV3 colorSensor;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,7 +37,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    colorSensor = new ColorSensor();
+    // colorSensor = new ColorSensor();
+    final I2C.Port i2cPort = I2C.Port.kOnboard;
+    colorSensor = new ColorSensorV3(i2cPort);
 
     // This will automatically send the camera data to the SmartDashboard.
     // The RoboRIO just "knows" the camera is plugged into it. Consider it magic, if you will.
@@ -112,7 +117,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {}
 
-  public static ColorSensor getColorSensor() {
+  public static ColorSensorV3 getColorSensor() {
     return colorSensor;
   }
 }
