@@ -17,7 +17,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void periodic() {
       // this is only used for when planning auto paths
       if (RobotContainer.readAuto)
-          RobotContainer.m_autoSubsystem.addIntaking(speed > 0.0);    
+          RobotContainer.m_autoSubsystem.addIntaking(speed);    
     }
 
     /**

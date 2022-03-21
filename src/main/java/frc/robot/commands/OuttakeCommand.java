@@ -2,20 +2,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.OuttakeSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class OuttakeCommand extends CommandBase {
-    private final OuttakeSubsystem m_outtakeSubsystem;
+    private final IntakeSubsystem m_intakeSubsystem;
 
-    public OuttakeCommand(OuttakeSubsystem m_outtakeSubsystem) {
-        this.m_outtakeSubsystem = m_outtakeSubsystem;
+    public OuttakeCommand(IntakeSubsystem m_intakeSubsystem) {
+        this.m_intakeSubsystem = m_intakeSubsystem;
 
-        addRequirements(m_outtakeSubsystem);
+        addRequirements(m_intakeSubsystem);
     }
     
     @Override
     public void execute() {
-        m_outtakeSubsystem.drive(-Constants.subsystems.intake.INTAKE_SPEED);
+        m_intakeSubsystem.drive(-Constants.subsystems.intake.INTAKE_SPEED);
     }
 
     /**
@@ -24,6 +24,6 @@ public class OuttakeCommand extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        m_outtakeSubsystem.drive(0.0);
+        m_intakeSubsystem.drive(0.0);
     }
 }

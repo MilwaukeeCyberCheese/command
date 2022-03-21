@@ -19,7 +19,6 @@ import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -52,17 +51,16 @@ public class RobotContainer {
 
   private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private static final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
-
-  private static final OuttakeSubsystem m_outtakeSubsystem = new OuttakeSubsystem();
-  private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_outtakeSubsystem);
-
-  private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem);
-  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
-
+  private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
+  // private static final OuttakeSubsystem m_outtakeSubsystem = new OuttakeSubsystem();
+  // private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
 
   private static final ServoSubsystem m_servoSubsystem = new ServoSubsystem();
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
+
+  private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
+  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -86,8 +84,7 @@ public class RobotContainer {
    * created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
-   * it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
     new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);

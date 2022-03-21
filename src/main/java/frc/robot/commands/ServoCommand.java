@@ -16,7 +16,6 @@ public class ServoCommand extends CommandBase {
     public void execute() {
         m_servoSubsystem.drive(0.0);
     }
-
     
     /**
      * This function ensures when the action is complete, the robot stops moving
