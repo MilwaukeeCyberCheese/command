@@ -97,11 +97,22 @@ public class RobotContainer {
       public void run() {
         if (!readAuto) {
           readAuto = true;
+          m_autoSubsystem.clearShit();
           System.out.println("Started - Begin Tracking Autonomous");
         } else {
           readAuto = false;
           System.out.println("Ended - Finished Tracking Autonomous");
           m_autoSubsystem.printSpeeds();
+          m_autoSubsystem.clearShit();
+        }
+      }
+    });
+    new Button(filteredController::getYButton).whenActive(new Runnable() {
+      @Override
+      public void run() {
+        if (readAuto) {
+          readAuto = false;
+          m_autoSubsystem.clearShit();
         }
       }
     });

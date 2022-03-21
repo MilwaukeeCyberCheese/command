@@ -125,6 +125,14 @@ public class FilteredController {
             return false;
         }
     }
+
+    public boolean getYButton(){
+        if (controller.getYButton()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /** 
      * Returns if any POVButton is pressed or not

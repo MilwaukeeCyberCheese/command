@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -89,7 +87,7 @@ public class AutoSubsystem extends SubsystemBase {
 
             Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
 
-          Constants.controllers.leftFrontSpark.set(0.0);
+            Constants.controllers.leftFrontSpark.set(0.0);
             Constants.controllers.leftRearSpark.set(0.0);
             Constants.controllers.rightFrontSpark.set(0.0);
             Constants.controllers.rightRearSpark.set(0.0);
@@ -125,6 +123,14 @@ public class AutoSubsystem extends SubsystemBase {
         this.servos.add(servo);
     }
 
+    public void clearShit() {
+        servos.clear();
+        topSpeeds.clear();
+        bottomSpeeds.clear();
+        speeds.clear();
+        intaking.clear();
+    }
+
     public void printSpeeds() {
         String toPrint = "";
 
@@ -135,7 +141,7 @@ public class AutoSubsystem extends SubsystemBase {
         // toPrint += "\n" + servos.size();
 
         // append the drive speeds
-        toPrint += "private List<ChassisSpeeds> speeds = {";
+        toPrint += "private List<ChassisSpeeds> speeds = new LinkedList(Arrays.asList(";
         for (int i = 0; i < speeds.size(); i++) {
             ChassisSpeeds speed = speeds.get(i);
             toPrint += "new ChassisSpeeds(";
@@ -147,10 +153,10 @@ public class AutoSubsystem extends SubsystemBase {
                 toPrint += ",";
             }
         }
-        toPrint += "}";
+        toPrint += "));";
 
         // append the intake speeds
-        toPrint += "\n\nprivate List<Double> intaking = {";
+        toPrint += "\n\nprivate List<Double> intaking = new LinkedList(Arrays.asList(";
         for (int i = 0; i < intaking.size(); i++) {
             double intake = intaking.get(i);
             toPrint += intake;
@@ -159,10 +165,10 @@ public class AutoSubsystem extends SubsystemBase {
                 toPrint += ",";
             }
         }
-        toPrint += "}";
+        toPrint += "));\n";
 
         // append the shooter speeds
-        toPrint += "\n\nprivate List<Double> topSpeeds = {";
+        toPrint += "\n\nprivate List<Double> topSpeeds = new LinkedList(Arrays.asList(";
         for (int i = 0; i < topSpeeds.size(); i++) {
             double shoot = topSpeeds.get(i);
             toPrint += shoot;
@@ -171,10 +177,10 @@ public class AutoSubsystem extends SubsystemBase {
                 toPrint += ",";
             }
         }
-        toPrint += "}";
+        toPrint += "));\n";
         
         // append the shooter speeds
-        toPrint += "\n\nprivate List<Double> bottomSpeeds = {";
+        toPrint += "\n\nprivate List<Double> bottomSpeeds = new LinkedList(Arrays.asList(";
         for (int i = 0; i < bottomSpeeds.size(); i++) {
             double shoot = bottomSpeeds.get(i);
             toPrint += shoot;
@@ -183,10 +189,10 @@ public class AutoSubsystem extends SubsystemBase {
                 toPrint += ",";
             }
         }
-        toPrint += "}";
+        toPrint += "));\n";
 
         // append the servo speeds
-        toPrint += "\n\nprivate List<Double> servos = {";
+        toPrint += "\n\nprivate List<Double> servos = new LinkedList(Arrays.asList(";
         for (int i = 0; i < servos.size(); i++) {
             double servo = servos.get(i);
             toPrint += servo;
@@ -195,17 +201,34 @@ public class AutoSubsystem extends SubsystemBase {
                 toPrint += ",";
             }
         }
-        toPrint += "}";
+        toPrint += "));\n";
+        
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println(toPrint);
+        System.out.println("\n");
+        System.out.println("\n");
+
+        servos.clear();
+        speeds.clear();
+        topSpeeds.clear();
+        bottomSpeeds.clear();
+        intaking.clear();
+
 
         // print the full string to file for analysis
-        try {
-            System.out.println("C:\\Users\\christophersonc\\OneDrive - Milwaukee School of Engineering\\Desktop\\command\\auto-output.txt");
-            File file = new File("C:\\Users\\christophersonc\\OneDrive - Milwaukee School of Engineering\\Desktop\\command\\auto-output.txt");
-            PrintWriter writer = new PrintWriter(file);
-            writer.println(toPrint);
-            writer.close();
-        } catch (Exception ignored) {
-            System.out.println(ignored);
-        }
+        // try {
+        //     File file = new File("C:\\Users\\christophersonc\\Desktop\\auto-output.txt");
+        //     if (!file.canWrite()) {
+        //         file.setWritable(true);
+        //     }
+        //     FileOutputStream writer = new FileOutputStream(file);
+        //     ObjectOutputStream oos = new ObjectOutputStream(writer);
+        //     oos.writeObject(toPrint);
+        //     oos.flush();
+        //     writer.close();
+        // } catch (Exception ignored) {
+        //     System.out.println(ignored);
+        // }
     }
 }
