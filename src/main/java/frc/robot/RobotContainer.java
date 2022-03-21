@@ -92,19 +92,19 @@ public class RobotContainer {
     new Button(filteredController::getRightTriggerActive).whileHeld(m_highShooterCommand);
     new Button(filteredController::getRightBumper).whileHeld(m_lowShooterCommand);
     new Button(filteredController::getAButton).whileHeld(m_servoCommand);
-    // new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
-    //   @Override
-    //   public void run() {
-    //     if (!readAuto) {
-    //       readAuto = true;
-    //       System.out.println("Started - Begin Tracking Autonomous");
-    //     } else {
-    //       readAuto = false;
-    //       System.out.println("Ended - Finished Tracking Autonomous");
-    //       m_autoSubsystem.printSpeeds();
-    //     }
-    //   }
-    // });
+    new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
+      @Override
+      public void run() {
+        if (!readAuto) {
+          readAuto = true;
+          System.out.println("Started - Begin Tracking Autonomous");
+        } else {
+          readAuto = false;
+          System.out.println("Ended - Finished Tracking Autonomous");
+          m_autoSubsystem.printSpeeds();
+        }
+      }
+    });
   }
 
   /**

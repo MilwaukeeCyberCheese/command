@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,9 +62,7 @@ public class AutoSubsystem extends SubsystemBase {
             if (stopwatchCounter < servos.size() - 1) {
                 double servo = this.servos.get(stopwatchCounter);
 
-                if (servo) {
-                    Constants.controllers.servo.set(servo);
-                }
+                Constants.controllers.servo.set(servo);
             }
             
             m_chassisSpeeds = this.speeds.get(stopwatchCounter);
@@ -200,9 +199,13 @@ public class AutoSubsystem extends SubsystemBase {
 
         // print the full string to file for analysis
         try {
-            PrintWriter writer = new PrintWriter("auto-output.txt", "UTF-8");
+            System.out.println("C:\\Users\\christophersonc\\OneDrive - Milwaukee School of Engineering\\Desktop\\command\\auto-output.txt");
+            File file = new File("C:\\Users\\christophersonc\\OneDrive - Milwaukee School of Engineering\\Desktop\\command\\auto-output.txt");
+            PrintWriter writer = new PrintWriter(file);
             writer.println(toPrint);
             writer.close();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            System.out.println(ignored);
+        }
     }
 }
