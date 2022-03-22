@@ -103,7 +103,6 @@ public class RobotContainer {
           readAuto = false;
           System.out.println("Ended - Finished Tracking Autonomous");
           m_autoSubsystem.printSpeeds();
-          m_autoSubsystem.clearShit();
         }
       }
     });
