@@ -61,7 +61,7 @@ public class AutoSubsystem extends SubsystemBase {
             if (stopwatchCounter < servos.size() - 1) {
                 double servo = this.servos.get(stopwatchCounter);
 
-                if (servo) {
+                if (servo == 1) {
                     Constants.controllers.servo.set(servo);
                 }
             }
