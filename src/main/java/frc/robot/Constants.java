@@ -84,8 +84,8 @@ public final class Constants {
             // These values relate directly to the drive speed
             // strafe affects the speed of the robot when driving directionally
             // turnRate affects the speed the robot can rotate on a point
-            public static final double strafe = 0.20;
-            public static final double turnRate = 0.10;
+            public static final double strafe = 0.35;
+            public static final double turnRate = 0.20;
         }
 
         public final class intake {
@@ -101,8 +101,8 @@ public final class Constants {
 
         public final class shooter {
             // These are constant speeds when the shooter is activated
-            public static final double HIGH_TOP_SPEED = 0.3;
-            public static final double HIGH_BOTTOM_SPEED = 1.65;
+            public static final double HIGH_TOP_SPEED = 0.35;
+            public static final double HIGH_BOTTOM_SPEED = 1.75;
             public static final double LOW_TOP_SPEED = 0.5;
             public static final double LOW_BOTTOM_SPEED = 0.7;
             public static final double TOP_WRONG_BALL_SPEED = 0.35;

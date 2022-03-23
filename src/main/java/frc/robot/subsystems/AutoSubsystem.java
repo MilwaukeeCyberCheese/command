@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class AutoSubsystem extends SubsystemBase {
 
-    // 36 and 3/4 is an important number
+    // 36 and 3/4 is how far from the edge of the tape we need to line up, we also need to have the right bumper slightly off the line
 
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
