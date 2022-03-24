@@ -7,6 +7,7 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.subsystems.AutoSubsystemValues;
 
 public class AutoSubsystem extends SubsystemBase {
 
@@ -121,7 +122,7 @@ public class AutoSubsystem extends SubsystemBase {
                 Constants.controllers.rightFrontSpark.set(0.0);
                 Constants.controllers.rightRearSpark.set(0.0);
             }
-        } else { // do nothing
+        } else if (auto == 3) { // do nothing
             Constants.controllers.shooterTopSpark.set(0.0);
             Constants.controllers.shooterBottomSpark.set(0.0);
             Constants.controllers.intakeSpark.set(0.0);
@@ -174,6 +175,7 @@ public class AutoSubsystem extends SubsystemBase {
         AutoSubsystemValues.bottomSpeeds.clear();
         AutoSubsystemValues.speeds.clear();
         AutoSubsystemValues.intaking.clear();
+        stopwatchCounter = -1;
     }
 
     public void printSpeeds() {
