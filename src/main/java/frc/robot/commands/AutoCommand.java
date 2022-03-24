@@ -10,6 +10,10 @@ public class AutoCommand extends CommandBase {
     public AutoCommand(AutoSubsystem autoSubsystem) {
         this.m_autoSubsystem = autoSubsystem;
     }
+
+    public void setAuto(int auto) {
+        m_autoSubsystem.setAuto(auto);
+    }
     
     @Override
     public void execute() {}

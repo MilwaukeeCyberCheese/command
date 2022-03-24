@@ -84,8 +84,8 @@ public final class Constants {
             // These values relate directly to the drive speed
             // strafe affects the speed of the robot when driving directionally
             // turnRate affects the speed the robot can rotate on a point
-            public static final double strafe = 0.35;
-            public static final double turnRate = 0.20;
+            public static final double strafe = 0.4;
+            public static final double turnRate = 0.25;
         }
 
         public final class intake {
