@@ -2,18 +2,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.other.Stopwatch;
 
 public class LowShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
-    private final ServoSubsystem m_servoSubsystem;
     private final Stopwatch timer;
 
-    public LowShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
+    public LowShooterCommand(ShooterSubsystem m_shooterSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
-        this.m_servoSubsystem = m_servoSubsystem;
         timer = new Stopwatch();
         addRequirements(m_shooterSubsystem);
     }

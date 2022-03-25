@@ -9,10 +9,8 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommand;
 
@@ -39,9 +37,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    autoChooser.addDefault("Shooting", 1);
-    autoChooser.addObject("Driving", 2);
-    autoChooser.addObject("Nothing", 3);
+    autoChooser.setDefaultOption("Shooting", 1);
+    autoChooser.addOption("Driving", 2);
+    autoChooser.addOption("Nothing", 3);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -114,8 +112,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // testing loggers for the color sensor. This can be used later to determine the color of the ball
-    // todo when we get this working for detecting the ball, determine a way to tell whether we should
-    // be detecting blue balls as ours or red balls as ours
     // System.out.println("Blue " + Robot.colorSensor.blue());
     // System.out.println("Red " + Robot.colorSensor.red());
     // System.out.println("Green " + Robot.colorSensor.green());

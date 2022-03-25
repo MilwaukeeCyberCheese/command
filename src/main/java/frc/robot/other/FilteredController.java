@@ -126,8 +126,39 @@ public class FilteredController {
         }
     }
 
+    /**
+     * Returns if the B button is pressed or not
+     * 
+     * @return boolean
+     */
+    public boolean getBButton(){
+        if (controller.getBButton()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns if the Y button is pressed or not
+     * 
+     * @return boolean
+     */
     public boolean getYButton(){
         if (controller.getYButton()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns if the X button is pressed or not
+     * 
+     * @return boolean
+     */
+    public boolean getXButton(){
+        if (controller.getXButton()) {
             return true;
         } else {
             return false;

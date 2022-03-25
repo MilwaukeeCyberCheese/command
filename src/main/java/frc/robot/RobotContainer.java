@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
@@ -59,8 +58,8 @@ public class RobotContainer {
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
 
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
-  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
+  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem);
+  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
