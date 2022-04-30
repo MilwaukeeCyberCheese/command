@@ -28,7 +28,7 @@ public class LowShooterCommand extends CommandBase {
             Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
         }
 
-        if (timer.getTime() > 1400) {
+        if (timer.getTime() > 1800) {
             m_shooterSubsystem.drive(0.0, 0.0);
         } else {
             m_shooterSubsystem.drive(Constants.subsystems.shooter.LOW_TOP_SPEED, Constants.subsystems.shooter.LOW_BOTTOM_SPEED);
