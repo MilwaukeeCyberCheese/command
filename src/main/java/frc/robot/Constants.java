@@ -95,8 +95,8 @@ public final class Constants {
 
         public final class servo {
             // These are the positions that the servo opens to
-            public static final double OPEN_POS = 0.0;
-            public static final double CLOSED_POS = 0.25;
+            public static final double OPEN_POS = 0.2;
+            public static final double CLOSED_POS = 0.4;
         }
 
         public final class shooter {
