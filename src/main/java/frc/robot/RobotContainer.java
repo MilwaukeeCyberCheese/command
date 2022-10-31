@@ -14,12 +14,14 @@ import frc.robot.commands.LowShooterCommand;
 import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ServoCommand;
 import frc.robot.commands.HighShooterCommand;
+import frc.robot.commands.ejectCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -60,6 +62,7 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem);
   private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
+  private static final ejectCommand m_ejectCommand = new ejectCommand(m_shooterSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -91,6 +94,7 @@ public class RobotContainer {
     new Button(filteredController::getRightTriggerActive).whileHeld(m_highShooterCommand);
     new Button(filteredController::getRightBumper).whileHeld(m_lowShooterCommand);
     new Button(filteredController::getAButton).whileHeld(m_servoCommand);
+    new Button(filteredController::getYButton).whileHeld(m_ejectCommand);
     new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
       @Override
       public void run() {
