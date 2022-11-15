@@ -22,11 +22,13 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
-
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
@@ -53,8 +55,10 @@ public class RobotContainer {
   private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private static final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
   private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
-  // private static final OuttakeSubsystem m_outtakeSubsystem = new OuttakeSubsystem();
-  // private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
+  // private static final OuttakeSubsystem m_outtakeSubsystem = new
+  // OuttakeSubsystem();
+  // private static final OuttakeCommand m_outtakeCommand = new
+  // OuttakeCommand(m_intakeSubsystem);
 
   private static final ServoSubsystem m_servoSubsystem = new ServoSubsystem();
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
@@ -64,7 +68,9 @@ public class RobotContainer {
   private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
   private static final ejectCommand m_ejectCommand = new ejectCommand(m_shooterSubsystem);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
     m_driveSubsystem.setDefaultCommand(m_driveCommand);
 
@@ -122,6 +128,7 @@ public class RobotContainer {
 
   /**
    * Modifies the controller joysticks
+   * 
    * @param value
    * @return
    */
@@ -137,6 +144,7 @@ public class RobotContainer {
 
   /**
    * Deadband for the controller joysticks
+   * 
    * @param value
    * @param deadband
    * @return

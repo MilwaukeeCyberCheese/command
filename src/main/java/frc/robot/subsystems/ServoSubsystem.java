@@ -5,7 +5,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class ServoSubsystem extends SubsystemBase {
-    
+
     /**
      * This function is called every few milliseconds when the robot is enabled
      * 
@@ -17,7 +17,8 @@ public class ServoSubsystem extends SubsystemBase {
     }
 
     /**
-     * This function is called when the button on the controller to operate this subsystem is activated
+     * This function is called when the button on the controller to operate this
+     * subsystem is activated
      * 
      * @param speed The speed to move this subsystem at
      */

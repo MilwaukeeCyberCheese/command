@@ -59,7 +59,7 @@ public class Stopwatch implements Serializable, Cloneable {
    * Construct a StopWatch.
    * 
    * @param running
-   *          Start the watch
+   *                Start the watch
    */
   public Stopwatch(final boolean running) {
     if (running)
@@ -70,7 +70,7 @@ public class Stopwatch implements Serializable, Cloneable {
    * Start the watch.
    * 
    * @param reset
-   *          True to reset the watch prior to starting.
+   *              True to reset the watch prior to starting.
    */
   public void start(final boolean reset) {
     if (!running) {

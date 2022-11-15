@@ -10,22 +10,22 @@ import frc.robot.Constants;
 
 public class AutoSubsystem extends SubsystemBase {
 
-    // 36 and 3/4 is how far from the edge of the tape we need to line up, we also need to have the left bumper slightly off the line
+    // 36 and 3/4 is how far from the edge of the tape we need to line up, we also
+    // need to have the left bumper slightly off the line
 
     private int auto = 1;
 
     private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
-
     private static final MecanumDriveKinematics m_kinematics = new MecanumDriveKinematics(
-                        // Front left
-                        new Translation2d(Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0),
-                        // Front right
-                        new Translation2d(Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0),
-                        // Back left
-                        new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0),
-                        // Back right
-                        new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
+            // Front left
+            new Translation2d(Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0),
+            // Front right
+            new Translation2d(Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0),
+            // Back left
+            new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, Constants.dimensions.WHEELBASE / 2.0),
+            // Back right
+            new Translation2d(-Constants.dimensions.TRACKWIDTH / 2.0, -Constants.dimensions.WHEELBASE / 2.0));
 
     private int stopwatchCounter = -1;
 
@@ -37,19 +37,19 @@ public class AutoSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (auto == 1) {
-            if (DriverStation.isAutonomousEnabled() && stopwatchCounter < AutoSubsystemValues.speeds.size() - 1) { 
+            if (DriverStation.isAutonomousEnabled() && stopwatchCounter < AutoSubsystemValues.speeds.size() - 1) {
                 stopwatchCounter++;
-                
+
                 // shoot
-                double topSpeed = AutoSubsystemValues.topSpeeds.get(stopwatchCounter);              
-                double bottomSpeed = AutoSubsystemValues.bottomSpeeds.get(stopwatchCounter);  
-                
+                double topSpeed = AutoSubsystemValues.topSpeeds.get(stopwatchCounter);
+                double bottomSpeed = AutoSubsystemValues.bottomSpeeds.get(stopwatchCounter);
+
                 Constants.controllers.shooterTopSpark.set(topSpeed);
                 Constants.controllers.shooterBottomSpark.set(bottomSpeed);
 
                 // intake
                 double intake = AutoSubsystemValues.intaking.get(stopwatchCounter);
-                    
+
                 Constants.controllers.intakeSpark.set(intake);
 
                 // servos
@@ -58,24 +58,25 @@ public class AutoSubsystem extends SubsystemBase {
 
                     Constants.controllers.servo.set(servo);
                 }
-                
+
                 m_chassisSpeeds = AutoSubsystemValues.speeds.get(stopwatchCounter);
 
                 // drive using m_chassisSpeeds
                 // get the wheel speeds
                 MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);
-            
+
                 // get the individual wheel speeds
                 double leftFrontSpeed = wheelSpeeds.frontLeftMetersPerSecond;
                 double rightFrontSpeed = wheelSpeeds.frontRightMetersPerSecond;
                 double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
                 double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
-                
+
                 Constants.controllers.rightRearSpark.set(rightRearSpeed);
                 Constants.controllers.leftRearSpark.set(-leftRearSpeed);
                 Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
                 Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
-            } else if (DriverStation.isAutonomousEnabled() && stopwatchCounter >= AutoSubsystemValues.speeds.size() - 1) {
+            } else if (DriverStation.isAutonomousEnabled()
+                    && stopwatchCounter >= AutoSubsystemValues.speeds.size() - 1) {
                 // if we run out of code to run in auto, make sure everything is not moving
                 Constants.controllers.shooterTopSpark.set(0.0);
                 Constants.controllers.shooterBottomSpark.set(0.0);
@@ -89,26 +90,27 @@ public class AutoSubsystem extends SubsystemBase {
                 Constants.controllers.rightRearSpark.set(0.0);
             }
         } else if (auto == 2) {
-            if (DriverStation.isAutonomousEnabled() && stopwatchCounter < AutoSubsystemValues.auto2speeds.size() - 1) { 
+            if (DriverStation.isAutonomousEnabled() && stopwatchCounter < AutoSubsystemValues.auto2speeds.size() - 1) {
                 stopwatchCounter++;
-                
+
                 m_chassisSpeeds = AutoSubsystemValues.auto2speeds.get(stopwatchCounter);
 
                 // drive using m_chassisSpeeds
                 // get the wheel speeds
                 MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);
-            
+
                 // get the individual wheel speeds
                 double leftFrontSpeed = wheelSpeeds.frontLeftMetersPerSecond;
                 double rightFrontSpeed = wheelSpeeds.frontRightMetersPerSecond;
                 double leftRearSpeed = wheelSpeeds.rearLeftMetersPerSecond;
                 double rightRearSpeed = wheelSpeeds.rearRightMetersPerSecond;
-                
+
                 Constants.controllers.rightRearSpark.set(rightRearSpeed);
                 Constants.controllers.leftRearSpark.set(-leftRearSpeed);
                 Constants.controllers.rightFrontSpark.set(rightFrontSpeed);
                 Constants.controllers.leftFrontSpark.set(-leftFrontSpeed);
-            } else if (DriverStation.isAutonomousEnabled() && stopwatchCounter >= AutoSubsystemValues.speeds.size() - 1) {
+            } else if (DriverStation.isAutonomousEnabled()
+                    && stopwatchCounter >= AutoSubsystemValues.speeds.size() - 1) {
                 // if we run out of code to run in auto, make sure everything is not moving
                 Constants.controllers.shooterTopSpark.set(0.0);
                 Constants.controllers.shooterBottomSpark.set(0.0);
@@ -133,14 +135,15 @@ public class AutoSubsystem extends SubsystemBase {
             Constants.controllers.rightFrontSpark.set(0.0);
             Constants.controllers.rightRearSpark.set(0.0);
         }
-    } 
+    }
 
     public void setAuto(int auto) {
         this.auto = auto;
     }
 
     /**
-     * This function is called when the button on the controller to operate this subsystem is activated
+     * This function is called when the button on the controller to operate this
+     * subsystem is activated
      * 
      * @param speed The speed to move this subsystem at
      */
@@ -186,7 +189,8 @@ public class AutoSubsystem extends SubsystemBase {
             ChassisSpeeds speed = AutoSubsystemValues.speeds.get(i);
             toPrint += "new ChassisSpeeds(";
             toPrint += speed.vxMetersPerSecond + ",";
-            toPrint += speed.vyMetersPerSecond + ",";;
+            toPrint += speed.vyMetersPerSecond + ",";
+            ;
             toPrint += speed.omegaRadiansPerSecond + ")";
 
             if (i != AutoSubsystemValues.speeds.size() - 1) {
@@ -218,7 +222,7 @@ public class AutoSubsystem extends SubsystemBase {
             }
         }
         toPrint += "));\n";
-        
+
         // append the shooter speeds
         toPrint += "\n\nList<Double> bottomSpeeds = new LinkedList<Double>(Arrays.asList(";
         for (int i = 0; i < AutoSubsystemValues.bottomSpeeds.size(); i++) {
@@ -242,7 +246,7 @@ public class AutoSubsystem extends SubsystemBase {
             }
         }
         toPrint += "));\n";
-        
+
         System.out.println("\n");
         System.out.println("\n");
         System.out.println(toPrint);

@@ -17,10 +17,11 @@ public class ServoCommand extends CommandBase {
     public void execute() {
         m_servoSubsystem.drive(Constants.subsystems.servo.OPEN_POS);
     }
-    
+
     /**
      * This function ensures when the action is complete, the robot stops moving
-     * @param interrupted 
+     * 
+     * @param interrupted
      */
     @Override
     public void end(boolean interrupted) {
