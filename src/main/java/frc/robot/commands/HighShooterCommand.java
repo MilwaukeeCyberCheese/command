@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.other.Stopwatch;
 import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.other.Stopwatch;
 
 public class HighShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
