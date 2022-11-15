@@ -64,8 +64,8 @@ public class RobotContainer {
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
 
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem);
-  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem);
+  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
+  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
   private static final ejectCommand m_ejectCommand = new ejectCommand(m_shooterSubsystem);
 
   /**

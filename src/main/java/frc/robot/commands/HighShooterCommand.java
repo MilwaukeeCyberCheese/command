@@ -4,17 +4,20 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.other.Stopwatch;
 
 public class HighShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
+    private final ServoSubsystem m_servoSubsytem;
     private final Stopwatch timer;
     private double topSpeed = 0.0;
     private double bottomSpeed = 0.0;
 
-    public HighShooterCommand(ShooterSubsystem m_shooterSubsystem) {
+    public HighShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
+        this.m_servoSubsytem = m_servoSubsystem;
         timer = new Stopwatch();
         addRequirements(m_shooterSubsystem);
     }
@@ -45,9 +48,9 @@ public class HighShooterCommand extends CommandBase {
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
 
         if (timer.getTime() > 800) {
-            Constants.controllers.servo.set(Constants.subsystems.servo.OPEN_POS);
+            m_servoSubsytem.drive(Constants.subsystems.servo.OPEN_POS);
         } else {
-            Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
+            m_servoSubsytem.drive(Constants.subsystems.servo.CLOSED_POS);
         }
     }
 
@@ -61,7 +64,7 @@ public class HighShooterCommand extends CommandBase {
         topSpeed = 0.0;
         bottomSpeed = 0.0;
         m_shooterSubsystem.drive(0.0, 0.0);
-        Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
+        m_servoSubsytem.drive(Constants.subsystems.servo.CLOSED_POS);
         timer.stop();
         timer.reset();
     }
