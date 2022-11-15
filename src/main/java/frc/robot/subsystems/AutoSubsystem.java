@@ -36,6 +36,8 @@ public class AutoSubsystem extends SubsystemBase {
      */
     @Override
     public void periodic() {
+
+
         if (auto == 1) {
             if (DriverStation.isAutonomousEnabled() && stopwatchCounter < AutoSubsystemValues.speeds.size() - 1) {
                 stopwatchCounter++;
