@@ -10,14 +10,14 @@ import frc.robot.other.Stopwatch;
 
 public class HighShooterCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
-    private final ServoSubsystem m_servoSubsytem;
+    private final ServoSubsystem m_servoSubsystem;
     private final Stopwatch timer;
     private double topSpeed = 0.0;
     private double bottomSpeed = 0.0;
 
     public HighShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
-        this.m_servoSubsytem = m_servoSubsystem;
+        this.m_servoSubsystem = m_servoSubsystem;
         timer = new Stopwatch();
         addRequirements(m_shooterSubsystem);
     }
@@ -48,9 +48,9 @@ public class HighShooterCommand extends CommandBase {
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
 
         if (timer.getTime() > 800) {
-            m_servoSubsytem.drive(Constants.subsystems.servo.OPEN_POS);
+            m_servoSubsystem.drive(Constants.subsystems.servo.OPEN_POS);
         } else {
-            m_servoSubsytem.drive(Constants.subsystems.servo.CLOSED_POS);
+            m_servoSubsystem.drive(Constants.subsystems.servo.CLOSED_POS);
         }
     }
 
@@ -64,7 +64,7 @@ public class HighShooterCommand extends CommandBase {
         topSpeed = 0.0;
         bottomSpeed = 0.0;
         m_shooterSubsystem.drive(0.0, 0.0);
-        m_servoSubsytem.drive(Constants.subsystems.servo.CLOSED_POS);
+        m_servoSubsystem.drive(Constants.subsystems.servo.CLOSED_POS);
         timer.stop();
         timer.reset();
     }
