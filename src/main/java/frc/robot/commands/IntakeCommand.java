@@ -12,7 +12,7 @@ public class IntakeCommand extends CommandBase {
 
         addRequirements(m_intakeSubsystem);
     }
-    
+
     @Override
     public void execute() {
         m_intakeSubsystem.drive(Constants.subsystems.intake.INTAKE_SPEED);
@@ -20,7 +20,8 @@ public class IntakeCommand extends CommandBase {
 
     /**
      * This function ensures when the action is complete, the robot stops moving
-     * @param interrupted 
+     * 
+     * @param interrupted
      */
     @Override
     public void end(boolean interrupted) {

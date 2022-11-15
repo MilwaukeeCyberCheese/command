@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
@@ -15,6 +14,7 @@ import frc.robot.commands.LowShooterCommand;
 import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ServoCommand;
 import frc.robot.commands.HighShooterCommand;
+import frc.robot.commands.ejectCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -23,9 +23,12 @@ import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
@@ -52,8 +55,10 @@ public class RobotContainer {
   private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private static final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
   private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
-  // private static final OuttakeSubsystem m_outtakeSubsystem = new OuttakeSubsystem();
-  // private static final OuttakeCommand m_outtakeCommand = new OuttakeCommand(m_intakeSubsystem);
+  // private static final OuttakeSubsystem m_outtakeSubsystem = new
+  // OuttakeSubsystem();
+  // private static final OuttakeCommand m_outtakeCommand = new
+  // OuttakeCommand(m_intakeSubsystem);
 
   private static final ServoSubsystem m_servoSubsystem = new ServoSubsystem();
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
@@ -61,8 +66,11 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
   private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
+  private static final ejectCommand m_ejectCommand = new ejectCommand(m_shooterSubsystem);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
     m_driveSubsystem.setDefaultCommand(m_driveCommand);
 
@@ -75,7 +83,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public AutoCommand getAutonomousCommand() {
     return m_autoCommand;
   }
 
@@ -92,23 +100,35 @@ public class RobotContainer {
     new Button(filteredController::getRightTriggerActive).whileHeld(m_highShooterCommand);
     new Button(filteredController::getRightBumper).whileHeld(m_lowShooterCommand);
     new Button(filteredController::getAButton).whileHeld(m_servoCommand);
-    // new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
-    //   @Override
-    //   public void run() {
-    //     if (!readAuto) {
-    //       readAuto = true;
-    //       System.out.println("Started - Begin Tracking Autonomous");
-    //     } else {
-    //       readAuto = false;
-    //       System.out.println("Ended - Finished Tracking Autonomous");
-    //       m_autoSubsystem.printSpeeds();
-    //     }
-    //   }
-    // });
+    new Button(filteredController::getYButton).whileHeld(m_ejectCommand);
+    new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
+      @Override
+      public void run() {
+        if (!readAuto) {
+          readAuto = true;
+          m_autoSubsystem.clearShit();
+          System.out.println("Started - Begin Tracking Autonomous");
+        } else {
+          readAuto = false;
+          System.out.println("Ended - Finished Tracking Autonomous");
+          m_autoSubsystem.printSpeeds();
+        }
+      }
+    });
+    new Button(filteredController::getYButton).whenActive(new Runnable() {
+      @Override
+      public void run() {
+        if (readAuto) {
+          readAuto = false;
+          m_autoSubsystem.clearShit();
+        }
+      }
+    });
   }
 
   /**
    * Modifies the controller joysticks
+   * 
    * @param value
    * @return
    */
@@ -124,6 +144,7 @@ public class RobotContainer {
 
   /**
    * Deadband for the controller joysticks
+   * 
    * @param value
    * @param deadband
    * @return

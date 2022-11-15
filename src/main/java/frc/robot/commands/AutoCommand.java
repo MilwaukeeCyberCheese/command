@@ -10,13 +10,19 @@ public class AutoCommand extends CommandBase {
     public AutoCommand(AutoSubsystem autoSubsystem) {
         this.m_autoSubsystem = autoSubsystem;
     }
-    
+
+    public void setAuto(int auto) {
+        m_autoSubsystem.setAuto(auto);
+    }
+
     @Override
-    public void execute() {}
+    public void execute() {
+    }
 
     /**
      * This function ensures when the action is complete, the robot stops moving
-     * @param interrupted 
+     * 
+     * @param interrupted
      */
     @Override
     public void end(boolean interrupted) {
