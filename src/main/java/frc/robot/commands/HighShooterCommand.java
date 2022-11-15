@@ -26,10 +26,14 @@ public class HighShooterCommand extends CommandBase {
             timer.start();
         }
 
-        // this will spit the ball out nicely if the ball color does not match alliance color
+        // this will spit the ball out nicely if the ball color does not match alliance
+        // color
         if (topSpeed == 0 && bottomSpeed == 0) {
-            if (Robot.getColorSensor().getProximity() > 350 && (Robot.getColorSensor().getRed() > Robot.getColorSensor().getBlue() && DriverStation.getAlliance() != DriverStation.Alliance.Red
-                || Robot.getColorSensor().getBlue() > Robot.getColorSensor().getRed() && DriverStation.getAlliance() != DriverStation.Alliance.Blue)) {
+            if (Robot.getColorSensor().getProximity() > 350
+                    && (Robot.getColorSensor().getRed() > Robot.getColorSensor().getBlue()
+                            && DriverStation.getAlliance() != DriverStation.Alliance.Red
+                            || Robot.getColorSensor().getBlue() > Robot.getColorSensor().getRed()
+                                    && DriverStation.getAlliance() != DriverStation.Alliance.Blue)) {
                 topSpeed = Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED;
                 bottomSpeed = Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED;
             } else {

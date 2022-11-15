@@ -6,28 +6,29 @@ import frc.robot.RobotContainer;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private double speed;
+  private double speed;
 
-    /**
-     * This function is called every few milliseconds when the robot is enabled
-     * 
-     * For this subsystem, this function helps record auto paths
-     */
-    @Override
-    public void periodic() {
-      // this is only used for when planning auto paths
-      if (RobotContainer.readAuto)
-          RobotContainer.m_autoSubsystem.addIntaking(speed);    
-    }
+  /**
+   * This function is called every few milliseconds when the robot is enabled
+   * 
+   * For this subsystem, this function helps record auto paths
+   */
+  @Override
+  public void periodic() {
+    // this is only used for when planning auto paths
+    if (RobotContainer.readAuto)
+      RobotContainer.m_autoSubsystem.addIntaking(speed);
+  }
 
-    /**
-     * This function is called when the button on the controller to operate this subsystem is activated
-     * 
-     * @param speed The speed to move this subsystem at
-     */
-    public void drive(double speed) {
-      this.speed = speed;
-      Constants.controllers.intakeSpark.set(speed);
-    }
-    
+  /**
+   * This function is called when the button on the controller to operate this
+   * subsystem is activated
+   * 
+   * @param speed The speed to move this subsystem at
+   */
+  public void drive(double speed) {
+    this.speed = speed;
+    Constants.controllers.intakeSpark.set(speed);
+  }
+
 }

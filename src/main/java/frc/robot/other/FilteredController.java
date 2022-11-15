@@ -34,7 +34,6 @@ public class FilteredController {
         return new InputFilter(controller.getRightX()).getFiltered(deadzone);
     }
 
-
     /**
      * Gets the filtered Y input for the given stick.
      * 
@@ -86,7 +85,8 @@ public class FilteredController {
     }
 
     /**
-     * Returns whether or not the right trigger is pressed or not with a hard-coded deadzone
+     * Returns whether or not the right trigger is pressed or not with a hard-coded
+     * deadzone
      * 
      * @return boolean
      */
@@ -100,7 +100,8 @@ public class FilteredController {
     }
 
     /**
-     * Returns whether or not the left trigger is pressed or not with a hard-coded deadzone
+     * Returns whether or not the left trigger is pressed or not with a hard-coded
+     * deadzone
      * 
      * @return boolean
      */
@@ -118,7 +119,7 @@ public class FilteredController {
      * 
      * @return boolean
      */
-    public boolean getAButton(){
+    public boolean getAButton() {
         if (controller.getAButton()) {
             return true;
         } else {
@@ -131,7 +132,7 @@ public class FilteredController {
      * 
      * @return boolean
      */
-    public boolean getBButton(){
+    public boolean getBButton() {
         if (controller.getBButton()) {
             return true;
         } else {
@@ -144,7 +145,7 @@ public class FilteredController {
      * 
      * @return boolean
      */
-    public boolean getYButton(){
+    public boolean getYButton() {
         if (controller.getYButton()) {
             return true;
         } else {
@@ -157,15 +158,15 @@ public class FilteredController {
      * 
      * @return boolean
      */
-    public boolean getXButton(){
+    public boolean getXButton() {
         if (controller.getXButton()) {
             return true;
         } else {
             return false;
         }
     }
-    
-    /** 
+
+    /**
      * Returns if any POVButton is pressed or not
      * 
      * @return boolean
@@ -174,7 +175,7 @@ public class FilteredController {
         return controller.getPOV() != -1;
     }
 
-    /** 
+    /**
      * Returns depending on which POVButton is pressed
      * 
      * @return int
@@ -238,6 +239,7 @@ public class FilteredController {
 
     /**
      * Returns whether the right bumper is pressed or not
+     * 
      * @return boolean
      */
     public boolean getRightBumper() {

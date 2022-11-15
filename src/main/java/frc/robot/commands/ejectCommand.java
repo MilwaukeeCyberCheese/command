@@ -3,8 +3,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.other.Stopwatch;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class ejectCommand extends CommandBase {
     private final ShooterSubsystem m_shooterSubsystem;
@@ -31,7 +31,7 @@ public class ejectCommand extends CommandBase {
             if (Robot.getColorSensor().getProximity() > 350) {
                 topSpeed = Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED;
                 bottomSpeed = Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED;
-            } 
+            }
         }
 
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);

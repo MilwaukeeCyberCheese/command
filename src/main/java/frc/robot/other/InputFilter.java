@@ -12,9 +12,9 @@ public class InputFilter {
         this.input = input;
     }
 
-    
-    /** 
+    /**
      * Returns the filtered input using the given deadzone
+     * 
      * @param deadzone
      * @return double
      */
