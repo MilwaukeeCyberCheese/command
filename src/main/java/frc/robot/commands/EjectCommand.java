@@ -28,10 +28,10 @@ public class EjectCommand extends CommandBase {
         // this will spit the ball out nicely if the ball color does not match alliance
         // color
         if (topSpeed == 0 && bottomSpeed == 0) {
-            if (Robot.getColorSensor().getProximity() > 350) {
-                topSpeed = Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED;
-                bottomSpeed = Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED;
-            }
+
+            topSpeed = Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED;
+            bottomSpeed = Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED;
+
         }
 
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
