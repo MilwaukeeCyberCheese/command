@@ -32,7 +32,6 @@ public final class Constants {
         public static final int INTAKE_SPARK = 3;
         public static final int SHOOTER_TOP_SPARK = 8;
         public static final int SHOOTER_BOTTOM_SPARK = 6;
-        public static final int CLIMBER_SPARK = 1; // this is likely unused
 
         /**
          * These static objects are used throughout the program.
