@@ -14,7 +14,7 @@ import frc.robot.commands.LowShooterCommand;
 import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ServoCommand;
 import frc.robot.commands.HighShooterCommand;
-import frc.robot.commands.ejectCommand;
+import frc.robot.commands.EjectCommand;
 import frc.robot.other.FilteredController;
 import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -66,7 +66,7 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
   private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
-  private static final ejectCommand m_ejectCommand = new ejectCommand(m_shooterSubsystem);
+  private static final EjectCommand m_ejectCommand = new EjectCommand(m_shooterSubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
