@@ -15,6 +15,7 @@ public class HighShooterCommand extends CommandBase {
     private double topSpeed = 0.0;
     private double bottomSpeed = 0.0;
 
+    //constructor
     public HighShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
         this.m_servoSubsystem = m_servoSubsystem;

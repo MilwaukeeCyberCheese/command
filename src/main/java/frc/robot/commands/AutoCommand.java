@@ -7,6 +7,7 @@ import frc.robot.subsystems.AutoSubsystem;
 public class AutoCommand extends CommandBase {
     private final AutoSubsystem m_autoSubsystem;
 
+    //constructor
     public AutoCommand(AutoSubsystem autoSubsystem) {
         this.m_autoSubsystem = autoSubsystem;
     }

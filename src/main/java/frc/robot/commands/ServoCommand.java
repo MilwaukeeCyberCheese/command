@@ -7,6 +7,7 @@ import frc.robot.subsystems.ServoSubsystem;
 public class ServoCommand extends CommandBase {
     private final ServoSubsystem m_servoSubsystem;
 
+    //constructor
     public ServoCommand(ServoSubsystem m_servoSubsystem) {
         this.m_servoSubsystem = m_servoSubsystem;
 

@@ -7,6 +7,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
     private final IntakeSubsystem m_intakeSubsystem;
 
+    //constructor
     public IntakeCommand(IntakeSubsystem m_intakeSubsystem) {
         this.m_intakeSubsystem = m_intakeSubsystem;
 

@@ -12,6 +12,7 @@ public class EjectCommand extends CommandBase {
     private double topSpeed = 0.0;
     private double bottomSpeed = 0.0;
 
+    //constructor
     public EjectCommand(ShooterSubsystem m_shooterSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
         timer = new Stopwatch();

@@ -18,6 +18,7 @@ public class DriveCommand extends CommandBase {
     private final DoubleSupplier m_rotationSupplier;
     private double inputRot;
 
+    //constructor
     public DriveCommand(DriveSubsystem m_driveSubsystem, DoubleSupplier translationXSupplier,
             DoubleSupplier translationYSupplier, DoubleSupplier rotationSupplier) {
         this.m_driveSubsystem = m_driveSubsystem;
