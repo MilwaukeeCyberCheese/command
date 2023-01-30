@@ -20,7 +20,7 @@ public class ServoSubsystem extends SubsystemBase {
      * This function is called when the button on the controller to operate this
      * subsystem is activated
      * 
-     * @param speed The speed to move this subsystem at
+     * @param pos The position to move this subsystem to
      */
     public void drive(double pos) {
         Constants.controllers.servo.set(pos);
