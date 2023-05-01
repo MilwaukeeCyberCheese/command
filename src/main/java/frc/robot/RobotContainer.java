@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
@@ -64,8 +65,10 @@ public class RobotContainer {
   private static final ServoCommand m_servoCommand = new ServoCommand(m_servoSubsystem);
 
   private static final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem);
-  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem);
+  private static final HighShooterCommand m_highShooterCommand = new HighShooterCommand(m_shooterSubsystem,
+      m_servoSubsystem);
+  private static final LowShooterCommand m_lowShooterCommand = new LowShooterCommand(m_shooterSubsystem,
+      m_servoSubsystem);
   private static final EjectCommand m_ejectCommand = new EjectCommand(m_shooterSubsystem);
 
   /**
@@ -95,35 +98,15 @@ public class RobotContainer {
    * it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new Button(filteredController::getLeftTriggerActive).whileHeld(m_intakeCommand);
-    new Button(filteredController::getLeftBumper).whileHeld(m_outtakeCommand);
-    new Button(filteredController::getRightTriggerActive).whileHeld(m_highShooterCommand);
-    new Button(filteredController::getRightBumper).whileHeld(m_lowShooterCommand);
-    new Button(filteredController::getAButton).whileHeld(m_servoCommand);
-    new Button(filteredController::getYButton).whileHeld(m_ejectCommand);
-    new Button(filteredController::getPOVPressed).whenActive(new Runnable() {
-      @Override
-      public void run() {
-        if (!readAuto) {
-          readAuto = true;
-          m_autoSubsystem.clearShit();
-          System.out.println("Started - Begin Tracking Autonomous");
-        } else {
-          readAuto = false;
-          System.out.println("Ended - Finished Tracking Autonomous");
-          m_autoSubsystem.printSpeeds();
-        }
-      }
-    });
-    new Button(filteredController::getYButton).whenActive(new Runnable() {
-      @Override
-      public void run() {
-        if (readAuto) {
-          readAuto = false;
-          m_autoSubsystem.clearShit();
-        }
-      }
-    });
+    new Trigger(filteredController::getLeftTriggerActive).whileTrue(m_intakeCommand);
+    new Trigger(filteredController::getRightTriggerActive).whileTrue(m_highShooterCommand);
+
+    new Trigger(filteredController::getLeftBumper).whileTrue(m_outtakeCommand);
+    new Trigger(filteredController::getRightBumper).whileTrue(m_lowShooterCommand);
+    
+    new Trigger(filteredController::getYButton).whileTrue(m_ejectCommand);
+    new Trigger(filteredController::getAButton).whileTrue(m_servoCommand);
+
   }
 
   /**
