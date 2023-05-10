@@ -25,13 +25,13 @@ import edu.wpi.first.wpilibj.Servo;
 public final class Constants {
 
     public static final class controllers {
-        public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 7; // front = closest to intake, left = facing intake
+        public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 1; // front = closest to intake, left = facing intake
         public static final int DRIVETRAIN_LEFT_REAR_SPARK = 2;
-        public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 4;
-        public static final int DRIVETRAIN_RIGHT_REAR_SPARK = 5;
-        public static final int INTAKE_SPARK = 3;
-        public static final int SHOOTER_TOP_SPARK = 8;
-        public static final int SHOOTER_BOTTOM_SPARK = 6;
+        public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 3;
+        public static final int DRIVETRAIN_RIGHT_REAR_SPARK = 4;
+        public static final int INTAKE_SPARK = 5;
+        public static final int SHOOTER_TOP_SPARK = 6;
+        public static final int SHOOTER_BOTTOM_SPARK = 7;
 
         /**
          * These static objects are used throughout the program.
@@ -45,7 +45,7 @@ public final class Constants {
                 MotorType.kBrushed);
         public static final CANSparkMax rightRearSpark = new CANSparkMax(DRIVETRAIN_RIGHT_REAR_SPARK,
                 MotorType.kBrushed);
-        public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushless);
+        public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
         public static final Servo servo = new Servo(0);
@@ -89,7 +89,7 @@ public final class Constants {
 
         public final class intake {
             // This is the constant speed when the intake is activated
-            public static final double INTAKE_SPEED = 1.0;
+            public static final double INTAKE_SPEED = 0.4;
         }
 
         public final class servo {
