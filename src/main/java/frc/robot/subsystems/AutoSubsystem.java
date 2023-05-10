@@ -52,7 +52,7 @@ public class AutoSubsystem extends SubsystemBase {
                 // intake
                 double intake = AutoSubsystemValues.intaking.get(stopwatchCounter);
 
-                Constants.controllers.intakeSpark.set(intake);
+                Constants.controllers.intakeTopSpark.set(intake);
 
                 // servos
                 if (stopwatchCounter < AutoSubsystemValues.servos.size() - 1) {
@@ -82,7 +82,7 @@ public class AutoSubsystem extends SubsystemBase {
                 // if we run out of code to run in auto, make sure everything is not moving
                 Constants.controllers.shooterTopSpark.set(0.0);
                 Constants.controllers.shooterBottomSpark.set(0.0);
-                Constants.controllers.intakeSpark.set(0.0);
+                Constants.controllers.intakeTopSpark.set(0.0);
 
                 Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
 
@@ -116,7 +116,7 @@ public class AutoSubsystem extends SubsystemBase {
                 // if we run out of code to run in auto, make sure everything is not moving
                 Constants.controllers.shooterTopSpark.set(0.0);
                 Constants.controllers.shooterBottomSpark.set(0.0);
-                Constants.controllers.intakeSpark.set(0.0);
+                Constants.controllers.intakeTopSpark.set(0.0);
 
                 Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
 
@@ -128,7 +128,7 @@ public class AutoSubsystem extends SubsystemBase {
         } else if (auto == 3) { // do nothing
             Constants.controllers.shooterTopSpark.set(0.0);
             Constants.controllers.shooterBottomSpark.set(0.0);
-            Constants.controllers.intakeSpark.set(0.0);
+            Constants.controllers.intakeTopSpark.set(0.0);
 
             Constants.controllers.servo.set(Constants.subsystems.servo.CLOSED_POS);
 

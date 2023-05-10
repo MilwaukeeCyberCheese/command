@@ -8,6 +8,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private double speed;
 
+  public IntakeSubsystem() {
+    Constants.subsystems.intake.m_intake.setInverted(Constants.subsystems.intake.INVERTED);
+  }
+
   /**
    * This function is called every few milliseconds when the robot is enabled
    * 
@@ -28,7 +32,7 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void drive(double speed) {
     this.speed = speed;
-    Constants.controllers.intakeSpark.set(speed);
+    Constants.subsystems.intake.m_intake.set(speed);
   }
 
 }

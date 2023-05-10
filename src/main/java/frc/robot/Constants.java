@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -29,9 +30,10 @@ public final class Constants {
         public static final int DRIVETRAIN_LEFT_REAR_SPARK = 2;
         public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 3;
         public static final int DRIVETRAIN_RIGHT_REAR_SPARK = 4;
-        public static final int INTAKE_SPARK = 5;
-        public static final int SHOOTER_TOP_SPARK = 6;
-        public static final int SHOOTER_BOTTOM_SPARK = 7;
+        public static final int INTAKE_TOP_SPARK = 5;
+        public static final int INTAKE_BOTTOM_SPARK = 6;
+        public static final int SHOOTER_TOP_SPARK = 7;
+        public static final int SHOOTER_BOTTOM_SPARK = 8;
 
         /**
          * These static objects are used throughout the program.
@@ -45,7 +47,10 @@ public final class Constants {
                 MotorType.kBrushed);
         public static final CANSparkMax rightRearSpark = new CANSparkMax(DRIVETRAIN_RIGHT_REAR_SPARK,
                 MotorType.kBrushed);
-        public static final CANSparkMax intakeSpark = new CANSparkMax(INTAKE_SPARK, MotorType.kBrushed);
+
+        public static final CANSparkMax intakeTopSpark = new CANSparkMax(INTAKE_TOP_SPARK, MotorType.kBrushed);
+        public static final CANSparkMax intakeBottomSpark = new CANSparkMax(INTAKE_BOTTOM_SPARK, MotorType.kBrushed);
+
         public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
         public static final Servo servo = new Servo(0);
@@ -87,18 +92,22 @@ public final class Constants {
             public static final double turnRate = 0.20;
         }
 
-        public final class intake {
+        public static final class intake {
             // This is the constant speed when the intake is activated
             public static final double INTAKE_SPEED = 0.4;
+            public static final MotorControllerGroup m_intake = new MotorControllerGroup(controllers.intakeTopSpark,
+                    controllers.intakeBottomSpark);
+
+            public static final boolean INVERTED = true;
         }
 
-        public final class servo {
+        public static final class servo {
             // These are the positions that the servo opens to
             public static final double OPEN_POS = 0.2;
             public static final double CLOSED_POS = 0.4;
         }
 
-        public final class shooter {
+        public static final class shooter {
             // These are constant speeds when the shooter is activated
             public static final double HIGH_TOP_SPEED = 0.35;
             public static final double HIGH_BOTTOM_SPEED = 1.85;
