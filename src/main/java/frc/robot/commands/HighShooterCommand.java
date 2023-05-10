@@ -15,7 +15,7 @@ public class HighShooterCommand extends CommandBase {
     private double topSpeed = 0.0;
     private double bottomSpeed = 0.0;
 
-    //constructor
+    // constructor
     public HighShooterCommand(ShooterSubsystem m_shooterSubsystem, ServoSubsystem m_servoSubsystem) {
         this.m_shooterSubsystem = m_shooterSubsystem;
         this.m_servoSubsystem = m_servoSubsystem;
@@ -53,6 +53,11 @@ public class HighShooterCommand extends CommandBase {
         } else {
             m_servoSubsystem.drive(Constants.subsystems.servo.CLOSED_POS);
         }
+    }
+
+    @Override
+    public boolean isFinished() {
+        return timer.getTime() > Constants.subsystems.shooter.RUNTIME;
     }
 
     /**

@@ -55,6 +55,11 @@ public class LowShooterCommand extends CommandBase {
         }
     }
 
+    @Override
+    public boolean isFinished() {
+        return timer.getTime() > Constants.subsystems.shooter.RUNTIME;
+    }
+
     /**
      * This function ensures when the action is complete, the robot stops moving
      * 

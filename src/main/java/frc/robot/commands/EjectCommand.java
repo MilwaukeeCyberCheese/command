@@ -25,8 +25,7 @@ public class EjectCommand extends CommandBase {
             timer.start();
         }
 
-        // this will spit the ball out nicely if the ball color does not match alliance
-        // color
+       
         if (topSpeed == 0 && bottomSpeed == 0) {
 
             topSpeed = Constants.subsystems.shooter.TOP_WRONG_BALL_SPEED;
@@ -38,6 +37,11 @@ public class EjectCommand extends CommandBase {
 
         Constants.controllers.servo.set(Constants.subsystems.servo.OPEN_POS);
 
+    }
+
+    @Override
+    public boolean isFinished() {
+        return timer.getTime() > Constants.subsystems.shooter.EJECT_RUNTIME;
     }
 
     /**

@@ -115,6 +115,8 @@ public final class Constants {
             public static final double LOW_BOTTOM_SPEED = 0.8;
             public static final double TOP_WRONG_BALL_SPEED = 0.35;
             public static final double BOTTOM_WRONG_BALL_SPEED = 0.35;
+            public static final int RUNTIME = 1100;
+            public static final int EJECT_RUNTIME = 800;
         }
     }
 }
