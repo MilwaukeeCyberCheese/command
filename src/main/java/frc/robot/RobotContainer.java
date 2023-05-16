@@ -90,29 +90,6 @@ public class RobotContainer {
     new Trigger(filteredController::getRightBumper).onTrue(new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem));
     new Trigger(filteredController::getAButton).whileTrue( new ServoCommand(m_servoSubsystem));
     new Trigger(filteredController::getYButton).onTrue(new EjectCommand(m_shooterSubsystem));
-    new Trigger(filteredController::getPOVPressed).whenActive(new Runnable() {
-      @Override
-      public void run() {
-        if (!readAuto) {
-          readAuto = true;
-          m_autoSubsystem.clearShit();
-          System.out.println("Started - Begin Tracking Autonomous");
-        } else {
-          readAuto = false;
-          System.out.println("Ended - Finished Tracking Autonomous");
-          m_autoSubsystem.printSpeeds();
-        }
-      }
-    });
-    new Button(filteredController::getYButton).whenActive(new Runnable() {
-      @Override
-      public void run() {
-        if (readAuto) {
-          readAuto = false;
-          m_autoSubsystem.clearShit();
-        }
-      }
-    });
   }
 
   /**
