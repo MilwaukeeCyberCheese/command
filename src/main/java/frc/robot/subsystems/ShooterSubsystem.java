@@ -16,8 +16,8 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   @Override
   public void periodic() {
-    if (RobotContainer.readAuto)
-      RobotContainer.m_autoSubsystem.addShooting(topSpeed, bottomSpeed);
+  //   if (RobotContainer.readAuto)
+  //     RobotContainer.m_autoSubsystem.addShooting(topSpeed, bottomSpeed);
   }
 
   /**

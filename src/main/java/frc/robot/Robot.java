@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
 
-    m_autonomousCommand.setAuto(autoMode);
+    // m_autonomousCommand.setAuto(autoMode);
   }
 
   /** This function is called periodically during autonomous. */

@@ -62,8 +62,8 @@ public class DriveSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // this is only used for when planning auto paths
-        if (RobotContainer.readAuto)
-            RobotContainer.m_autoSubsystem.addSpeed(m_chassisSpeeds);
+        // if (RobotContainer.readAuto)
+        //     RobotContainer.m_autoSubsystem.addSpeed(m_chassisSpeeds);
 
         // get the wheel speeds
         MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(m_chassisSpeeds);

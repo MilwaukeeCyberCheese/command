@@ -17,7 +17,7 @@ import frc.robot.commands.ServoCommand;
 import frc.robot.commands.HighShooterCommand;
 import frc.robot.commands.EjectCommand;
 import frc.robot.other.FilteredController;
-import frc.robot.subsystems.AutoSubsystem;
+// import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
@@ -42,8 +42,8 @@ public class RobotContainer {
   // the robot's subsystems and commands are defined here...
   public static final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
 
-  public static final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
-  private static final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
+  // public static final AutoSubsystem m_autoSubsystem = new AutoSubsystem();
+  // private static final AutoCommand m_autoCommand = new AutoCommand(m_autoSubsystem);
 
   private static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
 
@@ -73,7 +73,8 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public AutoCommand getAutonomousCommand() {
-    return m_autoCommand;
+    // return m_autoCommand;
+    return null;
   }
 
   /**

@@ -20,8 +20,8 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // this is only used for when planning auto paths
-    if (RobotContainer.readAuto)
-      RobotContainer.m_autoSubsystem.addIntaking(speed);
+  //   if (RobotContainer.readAuto)
+  //     RobotContainer.m_autoSubsystem.addIntaking(speed);
   }
 
   /**
