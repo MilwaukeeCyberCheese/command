@@ -56,7 +56,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_driveSubsystem.setDefaultCommand(new DriveCommand(
         m_driveSubsystem,
-        () -> (modifyAxis(filteredController.getYLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND)
+        () -> - (modifyAxis(filteredController.getYLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND)
             * Constants.subsystems.drive.strafe,
         () -> (-modifyAxis(filteredController.getXLeft(.2)) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND)
             * Constants.subsystems.drive.strafe,
@@ -87,8 +87,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new Trigger(filteredController::getLeftTriggerActive).whileTrue(new IntakeCommand(m_intakeSubsystem));
     new Trigger(filteredController::getLeftBumper).whileTrue(new OuttakeCommand(m_intakeSubsystem));
-    new Trigger(filteredController::getRightTriggerActive).onTrue(new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem));
-    new Trigger(filteredController::getRightBumper).onTrue(new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem));
+    new Trigger(filteredController::getRightTriggerActive).whileTrue(new HighShooterCommand(m_shooterSubsystem, m_servoSubsystem));
+    new Trigger(filteredController::getRightBumper).whileTrue(new LowShooterCommand(m_shooterSubsystem, m_servoSubsystem));
     new Trigger(filteredController::getAButton).whileTrue( new ServoCommand(m_servoSubsystem));
     new Trigger(filteredController::getYButton).onTrue(new EjectCommand(m_shooterSubsystem));
   }

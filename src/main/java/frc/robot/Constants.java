@@ -53,7 +53,7 @@ public final class Constants {
 
         public static final CANSparkMax shooterTopSpark = new CANSparkMax(SHOOTER_TOP_SPARK, MotorType.kBrushed);
         public static final CANSparkMax shooterBottomSpark = new CANSparkMax(SHOOTER_BOTTOM_SPARK, MotorType.kBrushed);
-        public static final Servo servo = new Servo(0);
+        public static final Servo servo = new Servo(9);
     }
 
     /**
@@ -89,12 +89,12 @@ public final class Constants {
             // strafe affects the speed of the robot when driving directionally
             // turnRate affects the speed the robot can rotate on a point
             public static final double strafe = 0.45;
-            public static final double turnRate = 0.20;
+            public static final double turnRate = 0.10;
         }
 
         public static final class intake {
             // This is the constant speed when the intake is activated
-            public static final double INTAKE_SPEED = 0.4;
+            public static final double INTAKE_SPEED = 0.8;
             public static final MotorControllerGroup m_intake = new MotorControllerGroup(controllers.intakeTopSpark,
                     controllers.intakeBottomSpark);
 
@@ -110,12 +110,12 @@ public final class Constants {
         public static final class shooter {
             // These are constant speeds when the shooter is activated
             public static final double HIGH_TOP_SPEED = 0.35;
-            public static final double HIGH_BOTTOM_SPEED = 1.85;
-            public static final double LOW_TOP_SPEED = 0.6;
-            public static final double LOW_BOTTOM_SPEED = 0.8;
+            public static final double HIGH_BOTTOM_SPEED = -1.85;
+            public static final double LOW_TOP_SPEED = 0.2;
+            public static final double LOW_BOTTOM_SPEED = 0.6;
             public static final double TOP_WRONG_BALL_SPEED = 0.35;
             public static final double BOTTOM_WRONG_BALL_SPEED = 0.35;
-            public static final int RUNTIME = 1100;
+            public static final int RUNTIME = 2000;
             public static final int EJECT_RUNTIME = 800;
         }
     }

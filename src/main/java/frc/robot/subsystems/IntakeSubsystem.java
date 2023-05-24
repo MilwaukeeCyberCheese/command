@@ -9,7 +9,8 @@ public class IntakeSubsystem extends SubsystemBase {
   private double speed;
 
   public IntakeSubsystem() {
-    Constants.subsystems.intake.m_intake.setInverted(Constants.subsystems.intake.INVERTED);
+    Constants.controllers.intakeTopSpark.setInverted(Constants.subsystems.intake.INVERTED);
+    Constants.controllers.intakeBottomSpark.setInverted(Constants.subsystems.intake.INVERTED);
   }
 
   /**

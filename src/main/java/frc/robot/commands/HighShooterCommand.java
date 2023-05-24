@@ -42,13 +42,13 @@ public class HighShooterCommand extends CommandBase {
                 bottomSpeed = Constants.subsystems.shooter.BOTTOM_WRONG_BALL_SPEED;
             } else {
                 topSpeed = Constants.subsystems.shooter.HIGH_TOP_SPEED;
-                bottomSpeed = Constants.subsystems.shooter.HIGH_BOTTOM_SPEED;
+                bottomSpeed = -Constants.subsystems.shooter.HIGH_BOTTOM_SPEED;
             }
         }
 
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
 
-        if (timer.getTime() > 800) {
+        if (timer.getTime() > 1500) {
             m_servoSubsystem.drive(Constants.subsystems.servo.OPEN_POS);
         } else {
             m_servoSubsystem.drive(Constants.subsystems.servo.CLOSED_POS);
@@ -57,7 +57,7 @@ public class HighShooterCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return timer.getTime() > Constants.subsystems.shooter.RUNTIME;
+        return false;
     }
 
     /**

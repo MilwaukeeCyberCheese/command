@@ -48,7 +48,7 @@ public class LowShooterCommand extends CommandBase {
 
         m_shooterSubsystem.drive(topSpeed, bottomSpeed);
 
-        if (timer.getTime() > 800) {
+        if (timer.getTime() > 1100) {
             m_servoSubsystem.drive(Constants.subsystems.servo.OPEN_POS);
         } else {
             m_servoSubsystem.drive(Constants.subsystems.servo.CLOSED_POS);
@@ -57,7 +57,7 @@ public class LowShooterCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return timer.getTime() > Constants.subsystems.shooter.RUNTIME;
+        return false;
     }
 
     /**
