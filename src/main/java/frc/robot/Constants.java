@@ -112,7 +112,7 @@ public final class Constants {
             public static final double HIGH_TOP_SPEED = 0.35;
             public static final double HIGH_BOTTOM_SPEED = -1.85;
             public static final double LOW_TOP_SPEED = 0.2;
-            public static final double LOW_BOTTOM_SPEED = 0.6;
+            public static final double LOW_BOTTOM_SPEED = 0.7;
             public static final double TOP_WRONG_BALL_SPEED = 0.35;
             public static final double BOTTOM_WRONG_BALL_SPEED = 0.35;
             public static final int RUNTIME = 2000;
